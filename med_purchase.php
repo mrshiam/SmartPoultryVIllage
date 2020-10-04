@@ -34,8 +34,8 @@
                                                     <div class="form-group">
 
                                                             <label for="select" class=" form-control-label">Select Med Type</label>
-                                                                <select name="select1" id="med_type_selection" onchange="changeValue()" class="form-control">
-                                                                    <option value="0" selected="selected">Please select</option>
+                                                                <select name="med[med_type]" id="med_type_selection" onchange="changeValue()" class="form-control">
+                                                                    <option value="" selected="selected">Please select</option>
                                                                     <option value="1">Powder</option>
                                                                     <option value="2">Liquid</option>
                                                                 </select>

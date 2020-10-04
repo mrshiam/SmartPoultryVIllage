@@ -25,18 +25,31 @@
                                             <h3 class="text-center title-2">Chicken Sale</h3>
                                         </div>
                                         <hr>
-                                        <form action="" method="post" novalidate="novalidate">
+                                        <form action="chicken_sale_input.php" method="post" novalidate="novalidate">
+                                            <div class="form-group">
+                                                <label for="ck_batch" class="control-label mb-1">Chicken Batch Name</label>
+                                                <select name="chicken[batch_name]" id="ck_batch" class="form-control">
+                                                    <?php
+                                                    $chickens = Chicken::find_all();
+                                                    foreach ($chickens as $chicken) {
+
+                                                        ?>
+                                                        <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                             <div class = "row">
                                                 <div class = "col-6">
                                                     <div class="form-group">
                                                         <label for="tc" class="control-label mb-1">Number of Chicken</label>
-                                                        <input id="tc" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                        <input id="tc" name="chicken[schicken_number]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
                                                     </div>
                                                 </div>
                                                 <div class = "col-6">
                                                     <div class="form-group has-success">
                                                         <label for="pg_chickenPrice" class="control-label mb-1">Per KG Chicken Price</label>
-                                                        <input id="pg_chickenPrice" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
+                                                        <input id="pg_chickenPrice" name="chicken[per_kg_price]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
                                                             autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
                                                         <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                                     </div>
@@ -46,14 +59,14 @@
                                                 <div class = "col-6">
                                                     <div class="form-group">
                                                         <label for="tw_chicken" class="control-label mb-1">Total Weight of Chickens</label>
-                                                        <input id="tw_chicken" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                        <input id="tw_chicken" name="chicken[tchicken_weight]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
                                                     </div>
                                                 </div>
                                                 <div class = "col-6">
                                                     <div class="form-group has-success">
                                                         <label for="m_amount" class="control-label mb-1">Total Amount of Money</label>
-                                                        <input id="m_amount" name="cc-name" type="text"  class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
-                                                               autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" onclick="Calculate()" value="">
+                                                        <input id="m_amount" name="chicken[tamount_money]" type="text"  class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
+                                                               autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" onclick="Calculate()" value="" readonly>
                                                         <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                                     </div>
                                                 </div>
@@ -63,7 +76,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Sales Date</label>
-                                                        <input id="cc-exp" name="cc-exp" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
+                                                        <input id="cc-exp" name="chicken[sale_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
                                                             data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
                                                             autocomplete="cc-exp">
                                                         <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
@@ -71,7 +84,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="x_card_code" class="control-label mb-1">Customer Name</label>
-                                                    <select name="sale[customer_name]" id="select" class="form-control">
+                                                    <select name="chicken[customer_name]" id="select" class="form-control">
                                                         <?php
                                                         $customers = Customer::find_all();
                                                         foreach ($customers as $customer) {

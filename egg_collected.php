@@ -24,17 +24,24 @@
                                         <h3 class="text-center title-2">Egg Collected</h3>
                                     </div>
                                     <hr>
-                                    <form action="expenses.php" method="post" novalidate="novalidate">
+                                    <form action="collected_egg.php" method="post" novalidate="novalidate">
                                         <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Amount of Egg Collected</label>
-                                            <input id="cc-pament" name="oexpenses[element_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                            <label for="cc-payment" class="control-label mb-1">Dozen of Egg Collected</label>
+                                            <input id="nu_egg" name="egg[egg_number]" type="text" class="form-control" aria-required="true" aria-invalid="false" onblur="converter()" value="">
                                         </div>
+                                        <script>
+                                            function converter(){
+                                                var inputVal = document.getElementById("nu_egg").value;
+                                                document.getElementById("nu_egg").value = inputVal / 12;
+                                            }
+
+                                        </script>
 
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="cc-exp" class="control-label mb-1">Date</label>
-                                                    <input id="cc-exp" name="oexpenses[buying_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter Date"
+                                                    <input id="cc-exp" name="egg[collect_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter Date"
                                                            data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
                                                            autocomplete="cc-exp">
                                                     <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>

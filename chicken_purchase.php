@@ -24,20 +24,40 @@
                                             <h3 class="text-center title-2">Chicken Purches</h3>
                                         </div>
                                         <hr>
-                                        <form id = "cpurchase_form" action="" method="post" novalidate="novalidate">
-                                            <div class="form-group">
-                                                <label for="tc" class="control-label mb-1">Number of Chicken</label>
-                                                <input id="tchicken" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                        <form id = "cpurchase_form" action="chicken_input.php" method="post" novalidate="novalidate">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="tc" class="control-label mb-1">Chicken Batch Name</label>
+                                                        <input id="c_batch" name="chicken[batch_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="tc" class="control-label mb-1">Number of Chicken</label>
+                                                        <input id="tchicken" name="chicken[chicken_number]" type="text" class="form-control" aria-required="true" aria-invalid="false" onblur="autoInput()"  value="">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group has-success">
-                                                <label for="m_amount" class="control-label mb-1">Amount of Money</label>
-                                                <input id="tmoney" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
-                                                    autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="tc" class="control-label mb-1">Chicken Inventory</label>
+                                                            <input id="invent_chicken" name="chicken[chicken_inventory]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group has-success">
+                                                            <label for="m_amount" class="control-label mb-1">Amount of Money</label>
+                                                            <input id="tmoney" name="chicken[chicken_price]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
+                                                                autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
+                                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Price of Per Chicken</label>
-                                                <input id="price_chicken" name="cc-number" type="tel" class="form-control cc-number identified visa" onclick="Calculate()" value="" data-val="true"
+                                                <input id="price_chicken" name="chicken[per_price]" type="tel" class="form-control cc-number identified visa" onclick="Calculate()" value="" data-val="true"
 
                                                     data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number"
                                                     autocomplete="cc-number">
@@ -48,7 +68,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Purchase Date</label>
-                                                        <input id="cc-exp" name="cc-exp" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
+                                                        <input id="cc-exp" name="chicken[purchase_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
                                                             data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
                                                             autocomplete="cc-exp">
                                                         <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
@@ -57,7 +77,7 @@
                                                 <div class="col-6">
                                                     <label for="x_card_code" class="control-label mb-1">Retailer Name</label>
                                                     <div class="input-group">
-                                                        <input id="x_card_code" name="x_card_code" type="tel" class="form-control cc-cvc" value="" data-val="true" data-val-required="Please enter the security code"
+                                                        <input id="x_card_code" name="chicken[retailer_name]" type="tel" class="form-control cc-cvc" value="" data-val="true" data-val-required="Please enter the security code"
                                                             data-val-cc-cvc="Please enter a valid security code" autocomplete="off">
 
                                                     </div>
@@ -72,6 +92,10 @@
                                             </div>
                                         </form>
                                         <script>
+                                            function autoInput() {
+                                                var chicken_number = document.getElementById("tchicken").value;
+                                                document.getElementById("invent_chicken").value=chicken_number;
+                                            }
                                         function Calculate()
                                         {
                                         var totalchick = document.getElementById('tchicken').value;

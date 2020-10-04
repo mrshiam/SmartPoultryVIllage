@@ -11,15 +11,17 @@ if(is_post_request()) {
 
     if($result === true) {
         $new_amount = $given_food->gfood_amount;
-        $food_type = $given_food->gfood_name;
+        $food_name = $given_food->gfood_name;
         $foods = Food::find_all();
         foreach ($foods as $food) {
-            $updated_amount = ($food->food_amount - $new_amount);
+            if($new_amount > 0) {
+                $updated_amount = ($food->food_amount - $new_amount);
+            }
         }
 
         $sql = "UPDATE food_purchase SET ";
         $sql .= "food_amount='" . $updated_amount . "' ";
-        $sql .= "WHERE food_name='" . $food_type . "' ";
+        $sql .= "WHERE food_name='" . $food_name . "' ";
         $sql .= "LIMIT 1";
         $result = Database::$database->query($sql);
         return $result;

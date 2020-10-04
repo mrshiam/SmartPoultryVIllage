@@ -84,22 +84,22 @@
                                 <i class="zmdi zmdi-chart"></i>Reports</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="login.html">Chicken Purchase</a>
+                                    <a href="chicken_purchase_repo.php">Chicken Purchase</a>
                                 </li>
                                 <li>
                                     <a href="food_purchase_repo.php">Food Purchase</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Medicine Purchase</a>
+                                    <a href="med_purchase_repo.php">Medicine Purchase</a>
                                 </li>
                                 <li>
                                     <a href="transportation_cost_report.php">Transportation</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Employe Salary</a>
+                                    <a href="employee_salary_repo.php">Employe Salary</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Other Expences</a>
+                                    <a href="oexpances_repo.php">Other Expences</a>
                                 </li>
                             </ul>
                         </li>
@@ -186,22 +186,22 @@
                                 <i class="zmdi zmdi-chart"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="login.html">Chicken Purchase</a>
+                                    <a href="chicken_purchase_repo.php">Chicken Purchase</a>
                                 </li>
                                 <li>
                                     <a href="food_purchase_repo.php">Food Purchase</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Medicine Purchase</a>
+                                    <a href="med_purchase_repo.php">Medicine Purchase</a>
                                 </li>
                                 <li>
                                     <a href="transportation_cost_report.php">Transportation</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Employe Salary</a>
+                                    <a href="employee_salary_repo.php">Employe Salary</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Other Expences</a>
+                                    <a href="oexpances_repo.php">Other Expences</a>
                                 </li>
                             </ul>
                         </li>

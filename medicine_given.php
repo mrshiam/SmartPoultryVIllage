@@ -24,11 +24,11 @@
                                             <h3 class="text-center title-2">Food Given Track</h3>
                                         </div>
                                         <hr>
-                                        <form action="" method="post" novalidate="novalidate">
+                                        <form action="given_med.php" method="post" novalidate="novalidate">
                                             <div class="form-group">
 
                                                 <label for="select" class=" form-control-label">Name of The Food</label>
-                                                <select name="med[med_name]" id="select" class="form-control">
+                                                <select name="med[gmed_name]" id="select" class="form-control">
                                                     <?php
                                                     $mymed = Medicine::find_all();
                                                     foreach ($mymed as $med) {
@@ -40,7 +40,7 @@
                                                 </select>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Amount of Medicine Given</label>
-                                                <input id="cc-name" name="cc-name" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
+                                                <input id="cc-name" name="med[med_given_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
                                                     autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                             </div>
@@ -49,7 +49,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Date</label>
-                                                        <input id="cc-exp" name="cc-exp" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter Date"
+                                                        <input id="cc-exp" name="med[med_given_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter Date"
                                                             data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
                                                             autocomplete="cc-exp">
                                                         <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
