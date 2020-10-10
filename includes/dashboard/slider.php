@@ -101,6 +101,34 @@
                                 <li>
                                     <a href="oexpances_repo.php">Other Expences</a>
                                 </li>
+                                <li>
+                                    <a href="chicken_sale_repo.php"> Chicken Sale</a>
+                                </li>
+                                <li>
+                                    <a href="egg_sale_repo.php">Egg Sale</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="zmdi zmdi-border-color"></i>Farm Records Report</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="chicken_inven_repo.php">Chicken Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="food_given_repo.php">Food Given</a>
+                                </li>
+                                <li>
+                                    <a href="med_given_repo.php">Medicine Given</a>
+                                </li>
+                                <li>
+                                    <a href="egg_collected_repo.php">Egg Collection</a>
+                                </li>
+                                <li>
+                                    <a href="customer_details_repo.php">Customer Details</a>
+                                </li>
+
                             </ul>
                         </li>
 
@@ -203,6 +231,35 @@
                                 <li>
                                     <a href="oexpances_repo.php">Other Expences</a>
                                 </li>
+                                <li>
+                                    <a href="chicken_sale_repo.php"> Chicken Sale</a>
+                                </li>
+                                <li>
+                                    <a href="egg_sale_repo.php">Egg Sale</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="zmdi zmdi-border-color"></i>Farm Records Report</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="chicken_inven_repo.php">Chicken Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="food_given_repo.php">Food Given</a>
+                                </li>
+                                <li>
+                                    <a href="med_given_repo.php">Medicine Given</a>
+                                </li>
+                                <li>
+                                    <a href="egg_collected_repo.php">Egg Collection</a>
+                                </li>
+                                <li>
+                                    <a href="customer_details_repo.php">Customer Details</a>
+                                </li>
+
                             </ul>
                         </li>
 

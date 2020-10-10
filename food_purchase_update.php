@@ -23,7 +23,7 @@ if(is_post_request()) {
     $result = $food->save();
 
     if($result === true) {
-        $_SESSION['message'] = 'The bicycle was updated successfully.';
+        $_SESSION['message'] = 'The Food was updated successfully.';
 
     } else {
         // show errors
