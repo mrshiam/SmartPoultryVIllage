@@ -65,10 +65,10 @@
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href=""> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="chicken_purchase_update.php?id=<?php echo $chicken->id?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href=""><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="chicken_purchase_delete.php?id=<?php echo $chicken->id?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
