@@ -7,12 +7,12 @@ require_once('includes/init.php');
 
 
 if(!isset($_GET['id'])) {
-    redirect_to(url_for('food_purchase_repo.php'));
+    redirect_to(url_for('transportation_cost_report.php'));
 }
 $id = $_GET['id'];
 $transport = Transportation::find_by_id($id);
 if($transport == false) {
-    redirect_to(url_for('food_purchase_repo.php'));
+    redirect_to(url_for('transportation_cost_report.php'));
 }
 
 if(is_post_request()) {
@@ -23,7 +23,7 @@ if(is_post_request()) {
     $result = $transport->save();
 
     if($result === true) {
-        $_SESSION['message'] = 'The bicycle was updated successfully.';
+        $_SESSION['message'] = 'The Transportation Info was updated successfully.';
 
     } else {
         // show errors
@@ -61,7 +61,7 @@ if(is_post_request()) {
                                     </div>
                                     <?php
                                     if(!isset($transport)) {
-                                        redirect_to(url_for('food_purchase_repo.php'));
+                                        redirect_to(url_for('transportation_cost_report.php'));
                                     }
                                     ?>
                                     <hr>

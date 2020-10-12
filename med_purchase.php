@@ -18,7 +18,7 @@
                             <div class="col-lg-3"></div>
                             <div class="col-lg-6">
                                 <div class="card">
-                                    <div class="card-header">Purches</div>
+                                    <div class="card-header">Purchase</div>
                                     <div class="card-body">
                                         <div class="card-title">
                                             <h3 class="text-center title-2">Medicine Purches</h3>

@@ -36,6 +36,16 @@ if(is_post_request()) {
 }
 
 ?>
+<div class="page-container">
+    <header class="header-desktop">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="header-wrap">
+                    <h3> Chicken Purchase Update</h3>
+                </div>
+            </div>
+        </div>
+    </header>
 <div class="main-content">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
@@ -43,7 +53,7 @@ if(is_post_request()) {
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
                     <div class="card">
-                        <div class="card-header">Purches</div>
+                        <div class="card-header">Purchase</div>
                         <div class="card-body">
                             <div class="card-title">
                                 <h3 class="text-center title-2">Chicken Purches</h3>

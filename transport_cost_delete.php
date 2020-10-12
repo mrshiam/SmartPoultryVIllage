@@ -19,7 +19,7 @@ if(is_post_request()) {
 
     // Delete bicycle
     $result = $transport->delete();
-    $_SESSION['message'] = 'The bicycle was deleted successfully.';
+    $_SESSION['message'] = 'The Transportation Info was deleted successfully.';
     header("Location: transportation_cost_report.php");
 
 } else {
