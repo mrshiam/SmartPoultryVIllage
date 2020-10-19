@@ -3,10 +3,10 @@
 class FoodGiven extends Database {
 
     static protected $table_name = 'food_given';
-    static protected $db_columns = ['g_id', 'gfood_name', 'gfood_amount', 'given_date'];
+    static protected $db_columns = ['id', 'gfood_name', 'gfood_amount', 'given_date'];
 
 
-    public $g_id;
+    public $id;
     public $gfood_name;
     public $gfood_amount;
     public $given_date;

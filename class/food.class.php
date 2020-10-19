@@ -122,12 +122,13 @@ class EggSale extends Database
 {
 
     static protected $table_name = 'egg_sale';
-    static protected $db_columns = ['id', 'number_of_egg', 'price_per_dozen_egg','total_money','sale_date','customer_name'];
+    static protected $db_columns = ['id', 'number_of_egg', 'number_dozen_egg','per_dozen_price','total_money','sale_date','customer_name'];
 
 
     public $id;
     public $number_of_egg;
-    public $price_per_dozen_egg;
+    public $number_dozen_egg;
+    public $per_dozen_price;
     public $total_money;
     public $sale_date;
     public $customer_name;
@@ -139,7 +140,8 @@ class EggSale extends Database
     {
         //$this->brand = isset($args['brand']) ? $args['brand'] : '';
         $this->number_of_egg = $args['number_of_egg'] ?? '';
-        $this->price_per_dozen_egg = $args['price_per_dozen_egg'] ?? '';
+        $this->number_dozen_egg = $args['number_dozen_egg'] ?? '';
+        $this->per_dozen_price = $args['per_dozen_price'] ?? '';
         $this->total_money = $args['total_money'] ?? '';
         $this->sale_date = $args['sale_date'] ?? '';
         $this->customer_name = $args['customer_name'] ?? '';

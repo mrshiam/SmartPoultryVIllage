@@ -22,7 +22,7 @@
                                     <div class="card-header text-center">Sale</div>
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center title-2">Chicken Sale</h3>
+                                            <h3 class="text-center title-2">Egg Sale</h3>
                                         </div>
                                         <hr>
                                         <form action="egg_sale_input.php" method="post" novalidate="novalidate">
@@ -30,26 +30,36 @@
                                                 <div class = "col-6">
                                                     <div class="form-group">
                                                         <label for="no_egg" class="control-label mb-1">Number of Egg </label>
-                                                        <input id="no_egg" name="egg[number_of_egg]" type="text" class="form-control" aria-required="true" aria-invalid="false" onblur="converter()" value="">
+                                                        <input id="no_egg" name="egg[number_of_egg]" type="text" class="form-control" aria-required="true" aria-invalid="false"  value="">
                                                     </div>
                                                 </div>
                                                 <div class = "col-6">
                                                     <div class="form-group has-success">
-                                                        <label for="egg_dozen" class="control-label mb-1">Per Dozen Egg Price</label>
-                                                        <input id="egg_dozen" name="egg[price_per_dozen_egg]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
-                                                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
+                                                        <label for="egg_dozen" class="control-label mb-1"> Number of Dozen Egg </label>
+                                                        <input id="egg_dozen" name="egg[number_dozen_egg]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
+                                                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" onclick="converter()"  value="">
                                                         <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                                    <div class="form-group has-success">
-                                                        <label for="m_amount" class="control-label mb-1">Total Amount of Money</label>
-                                                        <input id="m_amount" name="egg[total_money]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
-                                                               autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" onclick="Calculate()" value="">
-                                                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            <div class = "row">
+                                                <div class = "col-6">
+                                                    <div class="form-group">
+                                                        <label for="egg_price" class="control-label mb-1">Per Dozen Price </label>
+                                                        <input id="egg_price" name="egg[per_dozen_price]" type="text" class="form-control" aria-required="true" aria-invalid="false"  value="">
                                                     </div>
-
+                                                </div>
+                                                <div class = "col-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group has-success">
+                                                            <label for="m_amount" class="control-label mb-1">Total Amount of Money</label>
+                                                            <input id="m_amount" name="egg[total_money]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
+                                                                   autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error"  onclick="Calculate()" value="">
+                                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-6">
@@ -93,14 +103,14 @@
 
                                             function converter(){
                                                 var inputVal = document.getElementById("no_egg").value;
-                                                document.getElementById("no_egg").value = inputVal / 12;
+                                                document.getElementById("egg_dozen").value = inputVal / 12;
                                             }
 
                                             function Calculate()
                                             {
-                                                var egg_no = document.getElementById('no_egg').value;
-                                                var egg_price = document.getElementById('egg_dozen').value;
-                                                document.getElementById('m_amount').value= egg_no * egg_price;
+                                                var egg_doz = document.getElementById('egg_dozen').value;
+                                                var egg_price = document.getElementById('egg_price').value;
+                                                document.getElementById('m_amount').value= egg_doz * egg_price;
 
                                             }
                                         </script>
@@ -113,11 +123,6 @@
                 </div>
             </div>
     <script type="text/javascript">
-        function PerChickenPrice() {
-            var tchicken = document.getElementById("tc").value;
-            var tamount = document.getElementById("m_amount").value;
-            var pcp = tamount / tchicken;
 
-        }
     </script>
 <?php include_once 'includes/dashboard/footer.php' ?>

@@ -10,16 +10,20 @@ if(is_post_request()) {
     $result = $egg_sale->save();
 
     if($result === true) {
-        $sold_number = $egg_sale->number_of_egg;
+        $new_id = $egg_sale->id;
+
+
+        $_SESSION['message'] = 'The bicycle was created successfully.';
+        $sold_number = $egg_sale->number_dozen_egg;
 
         $eggs = EggCollection::find_all();
         foreach ($eggs as $egg) {
             if($egg->egg_number > 0) {
                 $updated_egg_number = ($egg->egg_number - $sold_number);
             }
-        }
+       }
 
-        $sql = "UPDATE egg_collection SET ";
+       $sql = "UPDATE egg_collection SET ";
         $sql .= "egg_number='" . $updated_egg_number . "' ";
         $sql .= "LIMIT 1";
         $result = EggCollection::$database->query($sql);
