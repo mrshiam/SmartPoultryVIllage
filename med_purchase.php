@@ -24,41 +24,33 @@
                                             <h3 class="text-center title-2">Medicine Purches</h3>
                                         </div>
                                         <hr>
-                                        <form action="med_input.php" id="medForm" method="post" novalidate="novalidate">
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
-                                                <input id="cc-pament" name="med[med_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
-                                            </div>
-                                            <div class = row >
-                                                <div class = col-6 >
+                                        <form action="med_purchase_input.php" id="medForm" method="post" novalidate="novalidate">
+                                            <div class="row">
+                                                <div class="col-6">
                                                     <div class="form-group">
+                                                        <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
+                                                        <select name="med[med_name]" id="ck_batch" class="form-control">
+                                                            <?php
+                                                            $meds = Medicine::find_all();
+                                                            foreach ($meds as $med) {
 
-                                                            <label for="select" class=" form-control-label">Select Med Type</label>
-                                                                <select name="med[med_type]" id="med_type_selection" onchange="changeValue()" class="form-control">
-                                                                    <option value="" selected="selected">Please select</option>
-                                                                    <option value="1">Powder</option>
-                                                                    <option value="2">Liquid</option>
-                                                                </select>
+                                                                ?>
+                                                                <option value="<?php echo $med->med_name;?>"><?php echo $med->med_name; ?></option>
 
+
+                                                            <?php } ?>
+                                                        </select>
+                                                        <input id="cc-pament" name="med[med_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $med->med_id;?>">
                                                     </div>
                                                 </div>
-                                                <div class = col-6 >
-                                                    <div class="form-group">
+                                            <div class = col-6 >
+                                                <div class="form-group">
 
-                                                        <label for="select" class=" form-control-label">Type Unit</label>
-                                                        <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="">
-                                                    </div>
+                                                    <label for="select" class=" form-control-label">Type Unit</label>
+                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="<?php echo $med->med_unit;?>" readonly>
                                                 </div>
                                             </div>
-                                            <script>
-                                                var unitArray = ["","kg","lit"];
-                                                function changeValue() {
-                                                    var u = document.getElementById("med_type_selection");
-                                                    var u_value = u.options[u.selectedIndex].value;
-                                                    document.getElementById('med_unit').value = unitArray[u_value];
-
-                                                }
-                                            </script>
+                                            </div>
 
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Amount of Medicine</label>

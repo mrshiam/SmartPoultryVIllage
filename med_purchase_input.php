@@ -6,7 +6,7 @@ if(is_post_request()) {
 
     // Create record using post parameters
     $args = $_POST['med'];
-    $med = new Medicine($args);
+    $med = new MedicinePurchase($args);
     $result = $med->save();
 
     if($result === true) {
@@ -18,7 +18,7 @@ if(is_post_request()) {
 
 } else {
     // display the form
-    $med = new Medicine;
+    $med = new MedicinePurchase;
 }
 
 ?>

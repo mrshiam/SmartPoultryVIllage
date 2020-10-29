@@ -36,6 +36,13 @@
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                             </div>
                                             <div class="form-group">
+                                                <label for="cc-number" class="control-label mb-1">Phone</label>
+                                                <input id="cc-number" name="employee[employee_phone]" type="tel" class="form-control cc-number identified visa" value="" data-val="true"
+                                                       data-val-required="Please enter Money Amount" data-val-cc-number="Transportation Coast"
+                                                       autocomplete="cc-number">
+                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Amount</label>
                                                 <input id="cc-number" name="employee[salary_amount]" type="tel" class="form-control cc-number identified visa" value="" data-val="true"
                                                     data-val-required="Please enter Money Amount" data-val-cc-number="Transportation Coast"

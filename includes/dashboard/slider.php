@@ -24,6 +24,12 @@
                                 <i class="zmdi zmdi-card"></i>Expense</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
+                                    <a href="add_fooditem.php">Add Food Item</a>
+                                </li>
+                                <li>
+                                    <a href="add_meditem.php">Add Medicine Item</a>
+                                </li>
+                                <li>
                                     <a href="chicken_purchase.php">Chicken Purchase</a>
                                 </li>
                                 <li>
@@ -152,6 +158,12 @@
                             <a class="js-arrow" href="#">
                                 <i class="zmdi zmdi-card"></i>Expense</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="add_fooditem.php">Add Food Item</a>
+                                </li>
+                                <li>
+                                    <a href="add_meditem.php">Add Medicine Item</a>
+                                </li>
                                 <li>
                                     <a href="chicken_purchase.php">Chicken Purchase</a>
                                 </li>

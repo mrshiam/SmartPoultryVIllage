@@ -21,13 +21,13 @@
                                     <div class="card-header"></div>
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h3 class="text-center title-2">Food Given Track</h3>
+                                            <h3 class="text-center title-2">Medicine Given Track</h3>
                                         </div>
                                         <hr>
                                         <form action="given_med.php" method="post" novalidate="novalidate">
                                             <div class="form-group">
 
-                                                <label for="select" class=" form-control-label">Name of The Food</label>
+                                                <label for="select" class=" form-control-label">Name of The Medicine</label>
                                                 <select name="med[gmed_name]" id="select" class="form-control">
                                                     <?php
                                                     $mymed = Medicine::find_all();
@@ -38,17 +38,39 @@
 
                                                     <?php } ?>
                                                 </select>
-                                            <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1">Amount of Medicine Given</label>
-                                                <input id="cc-name" name="med[med_given_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
-                                                    autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                <input id="cc-pament" name="med[med_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $med->med_id?>">
                                             </div>
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group has-success">
+                                                            <label for="cc-name" class="control-label mb-1">Amount of Medicine Given</label>
+                                                            <input id="cc-name" name="med[med_given_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
+                                                                   autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
+                                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-6">
+                                                        <div class="form-group">
+                                                            <label for="cc-payment" class="control-label mb-1">Chicken Batch Name</label>
+                                                            <select name="med[batch_name]" id="ck_batch" class="form-control">
+                                                                <?php
+                                                                $chickens = Chicken::find_all();
+                                                                foreach ($chickens as $chicken) {
+
+                                                                    ?>
+                                                                    <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                            
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Date</label>
+                                                        <label for="cc-exp" class="control-label mb-1">Given Date</label>
                                                         <input id="cc-exp" name="med[med_given_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter Date"
                                                             data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
                                                             autocomplete="cc-exp">

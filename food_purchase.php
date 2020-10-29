@@ -25,17 +25,35 @@
                                             <h3 class="text-center title-2">Food Purches</h3>
                                         </div>
                                         <hr>
-                                        <form action="food_input.php" method="post" novalidate="novalidate">
+                                        <form action="food_purchase_input.php" method="post" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Food Label Name</label>
-                                                <input id="cc-pament" name="food[food_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+
+                                                <select name="food[food_name]" id="ck_batch" class="form-control">
+                                                    <?php
+                                                    $foods = Food::find_all();
+                                                    foreach ($foods as $food) {
+
+                                                        ?>
+                                                        <option value="<?php echo $food->food_name;?>"><?php echo $food->food_name; ?></option>
+
+
+                                                    <?php } ?>
+                                                </select>
                                             </div>
-                                            <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1">Amount of Food</label>
-                                                <input id="cc-name" name="food[food_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
-                                                    autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                                            </div>
+                                            <div class="row">
+                                                 <div class="col-12">
+                                                    <div class="form-group has-success">
+                                                        <label for="food_amount" class="control-label mb-1">Amount of Food</label>
+                                                        <input id="cc-pament" name="food[food_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $food->food_id?>">
+                                                        <input id="food_amount" name="food[food_amount]" type="text" class="form-control cc-name valid" data-val="true" placeholder="kg" data-val-required="Please enter the name on card"
+                                                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" onblur="autoInput()" value="">
+                                                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    </div>
+
+                                                 </div>
+
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Price of Food</label>
                                                 <input id="cc-number" name="food[food_price]" type="tel" class="form-control cc-number identified visa" value="" data-val="true"
@@ -70,6 +88,12 @@
                                                 </button>
                                             </div>
                                         </form>
+                                        <script>
+                                            function autoInput() {
+                                                var food_number = document.getElementById("food_amount").value;
+                                                document.getElementById("food_invent").value=food_number;
+                                            }
+                                        </script>
                                     </div>
                                 </div>
                             </div>

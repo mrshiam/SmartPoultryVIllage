@@ -11,7 +11,7 @@ if(is_post_request()) {
 
     if($result === true) {
         $new_id = $employee->id;
-        $_SESSION['message'] = 'The bicycle was created successfully.';
+
 
     } else {
         // show errors

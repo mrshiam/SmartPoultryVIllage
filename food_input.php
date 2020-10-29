@@ -10,8 +10,7 @@ if(is_post_request()) {
     $result = $food->save();
 
     if($result === true) {
-        $new_id = $food->id;
-        $_SESSION['message'] = 'The bicycle was created successfully.';
+
 
     } else {
         // show errors
