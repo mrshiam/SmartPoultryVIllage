@@ -36,31 +36,39 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $expances = OtherExpenses::find_all();
-                                foreach ($expances as $expance) {
+                                $current_page = $_GET['page'] ?? 1;
+                                $per_page = 2;
+                                $total_count = OtherExpenses::count_all();
+
+                                $pagination = new Pagination($current_page, $per_page, $total_count);
+                                $sql = "SELECT * FROM other_expenses ";
+                                $sql .= "LIMIT {$per_page} ";
+                                $sql .= "OFFSET {$pagination->offset()}";
+                                $expances = Database::$database->query($sql);
+                                foreach ($expances as $expance=>$value) {
                                     ?>
                                     <tr class="tr-shadow">
 
-                                        <td><?php echo $expance->id ?></td>
+                                        <td><?php echo $value['id'] ?></td>
                                         <td>
-                                            <?php echo $expance->element_name ?>
+                                            <?php echo $value['element_name'] ?>
                                         </td>
                                         <td>
-                                            <?php echo $expance->buying_reason ?>
+                                            <?php echo $value['buying_reason'] ?>
                                         </td>
-                                        <td><?php echo $expance->element_price ?></td>
+                                        <td><?php echo $value['element_price'] ?></td>
                                         <td>
-                                            <?php echo $expance->buying_date ?>
+                                            <?php echo $value['buying_date'] ?>
                                         </td>
 
                                         <td>
                                             <div class="table-data-feature">
 
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <a class = "action" href="oexpenses_repo_update.php?id=<?php echo $expance->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                    <a class = "action" href="oexpenses_repo_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                                 </button>
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <a class = "delete" data-confirm = "Are you want to delete this  item?" href="oexpances_repo_delete.php?id=<?php echo $expance->id ?>"><i class="zmdi zmdi-delete"></i></a>
+                                                    <a class = "delete" data-confirm = "Are you want to delete this  item?" href="oexpances_repo_delete.php?id=<?php echo $value['id'] ?>"><i class="zmdi zmdi-delete"></i></a>
                                                 </button>
 
                                             </div>
@@ -92,6 +100,10 @@
                         </div>
                         <!-- END DATA TABLE -->
                     </div>
+                    <?php
+                    $url =('oexpances_repo.php');
+                    echo $pagination->page_links($url);
+                    ?>
                 </div>
             </div>
         </div>

@@ -65,32 +65,18 @@ if(is_post_request()) {
                                     redirect_to(url_for('customer_details_repo.php'));
                                 }
                                 ?>
-                                <form action="add_customer.php" method="post" novalidate="novalidate">
+                                <form action="customer_details_update.php?id=<?php echo $cust_detail->id ?>" method="post" novalidate="novalidate">
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Customer Name</label>
                                         <input id="cc-pament" name="customer[customer_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $cust_detail->customer_name ?>">
                                     </div>
                                     <div class = 'row'>
-                                        <div class = col-6 >
+                                        <div class = col-12 >
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Customer Address</label>
                                                 <input id="cc-name" name="customer[customer_address]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
                                                        autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="<?php echo $cust_detail->customer_address ?>">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                                            </div>
-                                        </div>
-                                        <div class = col-6 >
-                                            <div class="form-group">
-
-                                                <label for="select" class=" form-control-label">Select Customer Type</label>
-                                                <select name="customer[customer_type]" id="select"   value="<?php echo $cust_detail->customer_type ?>" class="form-control">
-                                                    <option value="">Please select</option>
-                                                    <option value="1">Egg Customer</option>
-                                                    <option value="2">Chicken Customer</option>
-
-
-                                                </select>
-
                                             </div>
                                         </div>
                                     </div>

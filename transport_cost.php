@@ -10,8 +10,7 @@ if(is_post_request()) {
     $result = $transport->save();
 
     if($result === true) {
-        $new_id = $transport->id;
-        $_SESSION['message'] = 'The bicycle was created successfully.';
+
 
     } else {
         // show errors

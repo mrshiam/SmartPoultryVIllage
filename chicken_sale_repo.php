@@ -38,37 +38,46 @@
                             </thead>
                             <tbody>
                             <?php
-                            $chickensales = ChickenSale::find_all();
-                            foreach ($chickensales as $chickensale) {
+                            $current_page = $_GET['page'] ?? 1;
+                            $per_page = 2;
+                            $total_count = ChickenSale::count_all();
+
+                            $pagination = new Pagination($current_page, $per_page, $total_count);
+
+                            $sql = "SELECT * FROM chicken_sale ";
+                            $sql .= "LIMIT {$per_page} ";
+                            $sql .= "OFFSET {$pagination->offset()}";
+                            $chickensales = Database::$database->query($sql);
+                            foreach ($chickensales as $chickensale=>$value) {
                                 ?>
                                 <tr class="tr-shadow">
 
-                                    <td><?php echo $chickensale->id ?></td>
+                                    <td><?php echo $value['id'] ?></td>
                                     <td>
-                                        <?php echo $chickensale->batch_name ?>
+                                        <?php echo $value['batch_name'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $chickensale->schicken_number ?>
+                                        <?php echo $value['schicken_number'] ?>
                                     </td>
-                                    <td><?php echo $chickensale->per_kg_price ?></td>
+                                    <td><?php echo $value['per_kg_price'] ?></td>
                                     <td>
-                                        <?php echo $chickensale->tchicken_weight ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $chickensale->tamount_money ?>
+                                        <?php echo $value['tchicken_weight'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $chickensale->sale_date ?>
+                                        <?php echo $value['tamount_money'] ?>
                                     </td>
-                                    <td><?php echo $chickensale->customer_name ?></td>
+                                    <td>
+                                        <?php echo $value['sale_date'] ?>
+                                    </td>
+                                    <td><?php echo $value['customer_name'] ?></td>
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="chicken_sale_update.php?id=<?php echo $chickensale->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="chicken_sale_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="chicken_sale_delete.php?id=<?php echo $chickensale->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="chicken_sale_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -100,6 +109,10 @@
                     </div>
                     <!-- END DATA TABLE -->
                 </div>
+                <?php
+                $url =('chicken_sale_repo.php');
+                echo $pagination->page_links($url);
+                ?>
             </div>
         </div>
     </div>

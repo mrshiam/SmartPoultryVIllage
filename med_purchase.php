@@ -29,41 +29,54 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
-                                                        <select name="med[med_name]" id="ck_batch" class="form-control">
+                                                        <select name="med[med_id]" id="med_id" class="form-control">
                                                             <?php
                                                             $meds = Medicine::find_all();
                                                             foreach ($meds as $med) {
 
                                                                 ?>
-                                                                <option value="<?php echo $med->med_name;?>"><?php echo $med->med_name; ?></option>
+                                                                <option value="<?php echo $med->id;?>"><?php echo $med->med_name; ?></option>
 
 
                                                             <?php } ?>
                                                         </select>
-                                                        <input id="cc-pament" name="med[med_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $med->med_id;?>">
                                                     </div>
                                                 </div>
                                             <div class = col-6 >
                                                 <div class="form-group">
 
                                                     <label for="select" class=" form-control-label">Type Unit</label>
-                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="<?php echo $med->med_unit;?>" readonly>
+                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="" readonly>
                                                 </div>
                                             </div>
                                             </div>
 
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Amount of Medicine</label>
-                                                <input id="cc-name" name="med[med_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Amount of Med"
+                                                <input id="med_amount" name="med[med_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Amount of Med"
                                                     autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Price of Medicine</label>
-                                                <input id="cc-number" name="med[med_price]" type="text" class="form-control cc-number identified visa" value="" data-val="true"
-                                                    data-val-required="Please enter the card number" data-val-cc-number="Please enter Price of Medicine"
-                                                    autocomplete="cc-number">
-                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-number" class="control-label mb-1">Price of Medicine</label>
+                                                        <input id="med_price" name="med[med_price]" type="text" class="form-control cc-number identified visa" value="" data-val="true"
+                                                            data-val-required="Please enter the card number" data-val-cc-number="Please enter Price of Medicine"
+                                                            autocomplete="cc-number">
+                                                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="cc-number" class="control-label mb-1">Medicine Unit Price</label>
+                                                        <input id="med_unit_price" name="med[med_unit_price]" type="text" class="form-control cc-number identified visa" onclick="Calculate()" value="" data-val="true"
+                                                               data-val-required="Please enter the card number" data-val-cc-number="Please enter Price of Medicine"
+                                                               autocomplete="cc-number">
+                                                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
@@ -92,6 +105,15 @@
                                                 </button>
                                             </div>
                                         </form>
+                                        <script>
+                                            function Calculate()
+                                            {
+                                                var medAmount = document.getElementById('med_amount').value;
+                                                var medPrice = document.getElementById('med_price').value;
+                                                document.getElementById('med_unit_price').value=parseInt(medPrice) /      parseInt(medAmount);
+
+                                            }
+                                        </script>
                                     </div>
                                 </div>
                             </div>

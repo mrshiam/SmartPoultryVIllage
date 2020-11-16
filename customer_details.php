@@ -31,7 +31,7 @@
                                             <input id="cc-pament" name="customer[customer_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
                                         </div>
                                         <div class = 'row'>
-                                            <div class = col-6 >
+                                            <div class = col-12 >
                                                 <div class="form-group has-success">
                                                     <label for="cc-name" class="control-label mb-1">Customer Address</label>
                                                     <input id="cc-name" name="customer[customer_address]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
@@ -39,19 +39,7 @@
                                                     <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                                 </div>
                                             </div>
-                                        <div class = col-6 >
-                                            <div class="form-group">
 
-                                                <label for="select" class=" form-control-label">Select Customer Type</label>
-                                                <select name="customer[customer_type]" id="select"  class="form-control">
-                                                    <option value="">Please select</option>
-                                                    <option value="1">Egg Customer</option>
-                                                    <option value="2">Chicken Customer</option>
-
-                                                </select>
-
-                                            </div>
-                                        </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="cc-number" class="control-label mb-1">Customer Phone</label>

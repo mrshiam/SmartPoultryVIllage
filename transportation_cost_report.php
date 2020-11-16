@@ -27,7 +27,7 @@
                                 <tr>
                                     <th>Trasnportation ID</th>
                                     <th>Trasnport Name</th>
-                                    <th>Reason of Use</th>
+                                    <th>Batch Name</th>
                                     <th>Transport Fare</th>
                                     <th>Transport Used Date</th>
                                     <th></th>
@@ -35,31 +35,39 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $transports = Transportation::find_all();
-                                foreach ($transports as $transport) {
+                                $current_page = $_GET['page'] ?? 1;
+                                $per_page = 2;
+                                $total_count = Transportation::count_all();
+
+                                $pagination = new Pagination($current_page, $per_page, $total_count);
+                                $sql = "SELECT * FROM transpotation ";
+                                $sql .= "LIMIT {$per_page} ";
+                                $sql .= "OFFSET {$pagination->offset()}";
+                                $transports = Database::$database->query($sql);
+                                foreach ($transports as $transport=>$value) {
                                     ?>
                                     <tr class="tr-shadow">
 
-                                        <td><?php echo $transport->id ?></td>
+                                        <td><?php echo $value['id'] ?></td>
                                         <td>
-                                            <?php echo $transport->transport_name ?>
+                                            <?php echo $value['transport_name'] ?>
                                         </td>
                                         <td>
-                                            <?php echo $transport->reason_use ?>
+                                            <?php echo $value['batch_name'] ?>
                                         </td>
-                                        <td><?php echo $transport->transport_cost ?></td>
+                                        <td><?php echo $value['transport_cost'] ?></td>
                                         <td>
-                                            <?php echo $transport->used_date ?>
+                                            <?php echo $value['used_date'] ?>
                                         </td>
 
                                         <td>
                                             <div class="table-data-feature">
 
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <a class = "action" href="transport_cost_update.php?id=<?php echo $transport->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                    <a class = "action" href="transport_cost_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                                 </button>
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <a class = "delete" data-confirm = "Are you want to delete this  item?" href="transport_cost_delete.php?id=<?php echo $transport->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                    <a class = "delete" data-confirm = "Are you want to delete this  item?" href="transport_cost_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                                 </button>
 
                                             </div>
@@ -91,6 +99,10 @@
                         </div>
                         <!-- END DATA TABLE -->
                     </div>
+                    <?php
+                    $url =('transportation_cost_report.php');
+                    echo $pagination->page_links($url);
+                    ?>
                 </div>
             </div>
         </div>

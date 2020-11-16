@@ -25,12 +25,12 @@
                         <table class="table table-data2">
                             <thead>
                             <tr>
-                                <th>Purchase ID</th>
+
                                 <th>Purchased Medicine Name</th>
-                                <th>Purchased Medicine Type</th>
-                                <th>Purchased Medicine Unit</th>
                                 <th>Purchased Medicine Amount </th>
+                                <th>Purchased Medicine Unit</th>
                                 <th>Medicine Price</th>
+                                <th>Unit Price</th>
                                 <th>Purchased Date</th>
                                 <th>Retailer Name</th>
                                 <th></th>
@@ -38,33 +38,41 @@
                             </thead>
                             <tbody>
                             <?php
-                            $medicines = Medicine::find_all();
-                            foreach ($medicines as $medicine) {
+                            $current_page = $_GET['page'] ?? 1;
+                            $per_page = 2;
+                            $total_count = MedicinePurchase::count_all();
+
+                            $pagination = new Pagination($current_page, $per_page, $total_count);
+                            $sql = "SELECT med_name,med_purchase.id,med_amount,med_purchase.med_unit,med_price,med_purchase.med_unit_price,med_pdate,med_rname FROM `med_purchase` 
+                                    INNER JOIN med_item
+                                    ON med_item.id = med_purchase.med_id ";
+                            $sql .= "LIMIT {$per_page} ";
+                            $sql .= "OFFSET {$pagination->offset()}";
+                            $medicines = Database::$database->query($sql);
+                            foreach ($medicines as $medicine=>$value) {
                                 ?>
                                 <tr class="tr-shadow">
 
-                                    <td><?php echo $medicine->id ?></td>
+
                                     <td>
-                                        <?php echo $medicine->med_name ?>
+                                        <?php echo $value['med_name'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $medicine->med_type ?>
+                                        <?php echo $value['med_amount'] ?>
                                     </td>
-                                    <td><?php echo $medicine->med_unit ?></td>
-                                    <td>
-                                        <?php echo $medicine->med_amount ?>
-                                    </td>
-                                    <td><?php echo $medicine->med_price ?></td>
-                                    <td><?php echo $medicine->med_pdate ?></td>
-                                    <td><?php echo $medicine->med_rname ?></td>
+                                    <td><?php echo $value['med_unit'] ?></td>
+                                    <td><?php echo $value['med_price'] ?></td>
+                                    <td><?php echo $value['med_unit_price'] ?></td>
+                                    <td><?php echo $value['med_pdate'] ?></td>
+                                    <td><?php echo $value['med_rname'] ?></td>
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="med_purchase_update.php?id=<?php echo $medicine->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="med_purchase_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="med_purchase_delete.php?id=<?php echo $medicine->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="med_purchase_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -96,6 +104,10 @@
                     </div>
                     <!-- END DATA TABLE -->
                 </div>
+                <?php
+                $url =('med_purchase_repo.php');
+                echo $pagination->page_links($url);
+                ?>
             </div>
         </div>
     </div>

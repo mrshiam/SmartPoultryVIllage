@@ -31,13 +31,13 @@
                                             <div class="form-group">
 
                                                 <label for="select" class=" form-control-label">Name of The Food</label>
-                                                <select name="gfood[gfood_name]" id="select" class="form-control">
+                                                <select name="gfood[food_id]" id="select" class="form-control">
                                                     <?php
                                                     $foods = Food::find_all();
                                                     foreach ($foods as $food) {
 
                                                         ?>
-                                                        <option value="<?php echo $food->food_name;?>"><?php echo $food->food_name; ?></option>
+                                                        <option value="<?php echo $food->food_id;?>"><?php echo $food->food_name; ?></option>
 
 
                                                     <?php } ?>
@@ -48,13 +48,6 @@
                                             <div class="col-6">
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Amount of Food Given</label>
-                                                <?php
-                                                    $foods = Food::find_all();
-                                                    foreach ($foods as $food) {
-
-                                                        ?>
-                                                <input id="cc-pament" name="gfood[food_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $food->food_id?>">
-                                                <?php } ?>
                                                 <input id="cc-name" name="gfood[gfood_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
                                                     autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>

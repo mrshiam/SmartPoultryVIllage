@@ -80,12 +80,32 @@ if(is_post_request()) {
 
                                             <?php } ?>
                                         </select>
-                                        <div class="form-group has-success">
-                                            <label for="cc-name" class="control-label mb-1">Amount of Medicine Given</label>
-                                            <input id="cc-name" name="med[med_given_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
-                                                   autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="<?php echo $med_given->med_given_amount ?>">
-                                            <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group has-success">
+                                                <label for="cc-name" class="control-label mb-1">Amount of Medicine Given</label>
+                                                <input id="cc-name" name="med[med_given_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Buying It"
+                                                       autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="<?php echo $med_given->med_given_amount ?>">
+                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                            </div>
                                         </div>
+                                        <div class = "col-6">
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Chicken Batch Name</label>
+                                                <select name="med[batch_name]" id="ck_batch" class="form-control">
+                                                    <?php
+                                                    $chickens = Chicken::find_all();
+                                                    foreach ($chickens as $chicken) {
+
+                                                        ?>
+                                                        <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                         <div class="row">
                                             <div class="col-12">

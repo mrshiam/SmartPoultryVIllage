@@ -25,37 +25,46 @@
                         <table class="table table-data2">
                             <thead>
                             <tr>
-                                <th>Food ID</th>
-                                <th>Number Of Food</th>
+                                <th>Food Name</th>
                                 <th>Amount of Food Given</th>
+                                <th>Chicken's Batch Name</th>
                                 <th>Given Date</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $givenfoods = FoodGiven::find_all();
-                            foreach ($givenfoods as $givenfood) {
+                            $current_page = $_GET['page'] ?? 1;
+                            $per_page = 2;
+                            $total_count = FoodGiven::count_all();
+
+                            $pagination = new Pagination($current_page, $per_page, $total_count);
+                            $sql = "SELECT food_name,food_given.id,gfood_amount,batch_name,given_date FROM `food_given`
+                                    INNER JOIN food_item
+                                    ON food_item.id = food_given.food_id ";
+                            $sql .= "LIMIT {$per_page} ";
+                            $sql .= "OFFSET {$pagination->offset()}";
+                            $givenfoods = Database::$database->query($sql);
+                            foreach ($givenfoods as $givenfood=>$value) {
                                 ?>
                                 <tr class="tr-shadow">
-
-                                    <td><?php echo $givenfood->id ?></td>
                                     <td>
-                                        <?php echo $givenfood->gfood_name ?>
+                                        <?php echo $value['food_name'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $givenfood->gfood_amount ?>
+                                        <?php echo $value['gfood_amount'] ?>
                                     </td>
-                                    <td><?php echo $givenfood->given_date ?></td>
+                                    <td><?php echo $value['batch_name'] ?></td>
+                                    <td><?php echo $value['given_date'] ?></td>
 
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="food_given_update.php?id=<?php echo $givenfood->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="food_given_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="food_given_delete.php?id=<?php echo $givenfood->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="food_given_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -87,6 +96,10 @@
                     </div>
                     <!-- END DATA TABLE -->
                 </div>
+                <?php
+                $url =('food_given_repo.php');
+                echo $pagination->page_links($url);
+                ?>
             </div>
         </div>
     </div>

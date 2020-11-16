@@ -25,8 +25,9 @@
                         <table class="table table-data2">
                             <thead>
                             <tr>
-                                <th>ID</th>
+
                                 <th>Number Of Chicken</th>
+                                <th>Chicken's Batch Name</th>
                                 <th>Reason of Mortality</th>
                                 <th>Date</th>
 
@@ -34,28 +35,37 @@
                             </thead>
                             <tbody>
                             <?php
-                            $chickenmortalitys = ChickenMortality::find_all();
-                            foreach ($chickenmortalitys as $chickenmortality) {
+                            $current_page = $_GET['page'] ?? 1;
+                            $per_page = 2;
+                            $total_count = ChickenMortality::count_all();
+
+                            $pagination = new Pagination($current_page, $per_page, $total_count);
+
+                            $sql = "SELECT * FROM chicken_mortality ";
+                            $sql .= "LIMIT {$per_page} ";
+                            $sql .= "OFFSET {$pagination->offset()}";
+                            $chickenmortalitys = Database::$database->query($sql);
+                            foreach ($chickenmortalitys as $chickenmortality=>$value){
                                 ?>
                                 <tr class="tr-shadow">
 
-                                    <td><?php echo $chickenmortality->id ?></td>
                                     <td>
-                                        <?php echo $chickenmortality->chicken_number ?>
+                                        <?php echo $value['chicken_number'] ?>
                                     </td>
+                                    <td><?php echo $value['batch_name'] ?></td>
                                     <td>
-                                        <?php echo $chickenmortality->reason_of_die ?>
+                                        <?php echo $value['reason_of_die'] ?>
                                     </td>
-                                    <td><?php echo $chickenmortality->date ?></td>
+                                    <td><?php echo $value['date'] ?></td>
 
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="chicken_inven_update.php?id=<?php echo $chickenmortality->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="chicken_inven_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="chicken_inven_delete.php?id=<?php echo $chickenmortality->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="chicken_inven_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -87,6 +97,10 @@
                     </div>
                     <!-- END DATA TABLE -->
                 </div>
+                <?php
+                $url =('chicken_inven_repo.php');
+                echo $pagination->page_links($url);
+                ?>
             </div>
         </div>
     </div>

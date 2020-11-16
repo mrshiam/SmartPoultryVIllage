@@ -19,6 +19,7 @@ if(is_post_request()) {
 } else {
     // display the form
     $food = new Food;
+    header('add_fooditem.php');
 }
 
 ?>

@@ -1344,3 +1344,38 @@ section {
 #footer .credits a {
   color: #9eccf4;
 }
+
+.form_container{
+    width: 70%;
+    margin-bottom: 20px;
+    
+    
+}
+.card_form{
+    padding-top: 37px;
+}
+
+.image_card img{
+    width: 100%;
+    height: auto;
+    padding-top: 90px;
+}
+.img_card img{
+    height: 50px;
+}
+/* Pagination */
+
+.pagination {
+  margin: 1em 0;
+}
+
+.pagination a, .pagination span {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination span.selected {
+  font-weight: bold;
+  color: #000;
+}
+

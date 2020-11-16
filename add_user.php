@@ -1,16 +1,14 @@
 <?php
-
 require_once('includes/init.php');
 
 if(is_post_request()) {
 
     // Create record using post parameters
-    $args = $_POST['customer'];
-    $buyer = new Customer($args);
-    $result = $buyer->save();
+    $args = $_POST['user'];
+    $users = new User($args);
+    $result = $users->save();
 
     if($result === true) {
-
 
     } else {
         // show errors
@@ -18,7 +16,7 @@ if(is_post_request()) {
 
 } else {
     // display the form
-    $buyer = new Customer;
+    $users = new User;
 }
 
 ?>

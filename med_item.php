@@ -7,7 +7,7 @@
         <div class="section__content section__content--p30">
             <div class="container-fluid">
                 <div class="header-wrap">
-                    <h3> Chicken Purchase Report</h3>
+                    <h3> Added Medicine Items</h3>
                 </div>
             </div>
         </div>
@@ -25,60 +25,49 @@
                         <table class="table table-data2">
                             <thead>
                             <tr>
-                                <th>Purchase ID</th>
-                                <th>Chicken Batch Name</th>
-                                <th>Number of Chicken Purchased</th>
-                                <th>Chicken Inventory</th>
-                                <th>Chicken Total Price</th>
-                                <th>Per Piece Chicken Price</th>
-                                <th>Purchased Date</th>
-                                <th>Retailer Name</th>
-                                <th></th>
+                                <th>Medicine ID</th>
+                                <th>Name Of the Medicine</th>
+                                <th>Unit Of the Medicine</th>
+                                <th>Unit Price</th>
+                                <th>Adding Date</th>
+
+
                             </tr>
                             </thead>
                             <tbody>
                             <?php
                             $current_page = $_GET['page'] ?? 1;
                             $per_page = 2;
-                            $total_count = Chicken::count_all();
+                            $total_count = Medicine::count_all();
 
                             $pagination = new Pagination($current_page, $per_page, $total_count);
-
-                            $sql = "SELECT * FROM chicken_purchase ";
+                            $sql = "SELECT * FROM med_item ";
                             $sql .= "LIMIT {$per_page} ";
                             $sql .= "OFFSET {$pagination->offset()}";
-                            $chickens = Database::$database->query($sql);
-                            foreach ($chickens as $chicken=>$value){
-
-                            ?>
+                            $meds = Database::$database->query($sql);
+                            foreach ($meds as $med=>$value) {
+                                ?>
                                 <tr class="tr-shadow">
 
                                     <td><?php echo $value['id'] ?></td>
                                     <td>
-                                        <?php echo $value['batch_name'] ?>
+                                        <?php echo $value['med_name'] ?>
                                     </td>
+                                    <td><?php echo $value['med_unit'] ?></td>
+                                    <td><?php echo $value['med_unit_price'] ?></td>
                                     <td>
-                                        <?php echo $value['chicken_number'] ?>
+                                        <?php echo $value['adding_date'] ?>
                                     </td>
-                                    <td><?php echo $value['chicken_inventory'] ?></td>
-                                    <td>
-                                        <?php echo $value['chicken_price'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $value['per_price'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $value['purchase_date'] ?>
-                                    </td>
-                                    <td><?php echo $value['retailer_name'] ?></td>
+
+
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="chicken_purchase_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="med_item_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="chicken_purchase_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="med_item_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -111,7 +100,7 @@
                     <!-- END DATA TABLE -->
                 </div>
                 <?php
-                $url =('chicken_purchase_repo.php');
+                $url =('med_item.php');
                 echo $pagination->page_links($url);
                 ?>
             </div>

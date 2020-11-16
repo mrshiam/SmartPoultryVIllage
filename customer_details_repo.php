@@ -28,36 +28,43 @@
                                 <th>Customer ID</th>
                                 <th>Name Of Customer</th>
                                 <th>Address of the Customer</th>
-                                <th>Types of Customer</th>
                                 <th>Phone Number of Customer</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $customers = Customer::find_all();
-                            foreach ($customers as $customer) {
+                            $current_page = $_GET['page'] ?? 1;
+                            $per_page = 2;
+                            $total_count = Customer::count_all();
+
+                            $pagination = new Pagination($current_page, $per_page, $total_count);
+
+                            $sql = "SELECT * FROM customer_details ";
+                            $sql .= "LIMIT {$per_page} ";
+                            $sql .= "OFFSET {$pagination->offset()}";
+                            $customers = Database::$database->query($sql);
+                            foreach ($customers as $customer=>$value) {
                                 ?>
                                 <tr class="tr-shadow">
 
-                                    <td><?php echo $customer->id ?></td>
+                                    <td><?php echo $value['id'] ?></td>
                                     <td>
-                                        <?php echo $customer->customer_name ?>
+                                        <?php echo $value['customer_name'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $customer->customer_address ?>
+                                        <?php echo $value['customer_address'] ?>
                                     </td>
-                                    <td><?php echo $customer->customer_type ?></td>
-                                    <td><?php echo $customer->customer_phone ?></td>
+                                    <td><?php echo $value['customer_phone'] ?></td>
 
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="customer_details_update.php?id=<?php echo $customer->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="customer_details_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="customer_details_delete.php?id=<?php echo $customer->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="customer_details_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -89,6 +96,10 @@
                     </div>
                     <!-- END DATA TABLE -->
                 </div>
+                <?php
+                $url =('customer_details_repo.php');
+                echo $pagination->page_links($url);
+                ?>
             </div>
         </div>
     </div>

@@ -16,13 +16,14 @@ if(is_post_request()) {
 
         $chickens = Chicken::find_all();
         foreach ($chickens as $chicken) {
-            if($chicken->chicken_inventory > 0 AND $chicken->batch_name == $chicken_batch_name) {
-                $updated_chicken = ($chicken->chicken_inventory - $sold_number);
+            if($chicken->chicken_inventory > 0 ) {
+                $updated_chicken = ($chicken->chicken_number - $sold_number);
             }
         }
 
         $sql = "UPDATE chicken_purchase SET ";
-        $sql .= "chicken_inventory='" . $updated_chicken . "' ";
+        $sql .= "chicken_number='" . $updated_chicken . "' ";
+        $sql .= "WHERE batch_name='" . $chicken_batch_name . "'";
         $sql .= "LIMIT 1";
         $result = Chicken::$database->query($sql);
 

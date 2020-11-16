@@ -26,28 +26,35 @@
                                     </div>
                                     <hr>
                                     <form action="med_input.php" method="post" novalidate="novalidate">
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
-                                            <input id="cc-pament" name="med[med_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
-                                        </div>
                                         <div class = row >
                                             <div class = col-6 >
                                                 <div class="form-group">
-
+                                                    <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
+                                                    <input id="cc-pament" name="med[med_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                </div>
+                                            </div>
+                                            <div class = col-6 >
+                                                <div class="form-group">
                                                     <label for="select" class=" form-control-label">Select Med Type</label>
                                                     <select name="med[med_type]" id="med_type_selection" onchange="changeValue()" class="form-control">
                                                         <option value="" selected="selected">Please select</option>
                                                         <option value="1">Powder</option>
                                                         <option value="2">Liquid</option>
                                                     </select>
-
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = row >
+                                            <div class = col-6 >
+                                                <div class="form-group">
+                                                    <label for="select" class=" form-control-label">Type Unit</label>
+                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="">
                                                 </div>
                                             </div>
                                             <div class = col-6 >
                                                 <div class="form-group">
-
-                                                    <label for="select" class=" form-control-label">Type Unit</label>
-                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="">
+                                                    <label for="select" class=" form-control-label">Medicine Unit Price</label>
+                                                    <input id="med_unit" name="med[med_unit_price]"  class="form-control cc-number identified visa"  value="">
                                                 </div>
                                             </div>
                                         </div>

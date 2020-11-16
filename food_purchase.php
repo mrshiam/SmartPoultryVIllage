@@ -29,13 +29,13 @@
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Food Label Name</label>
 
-                                                <select name="food[food_name]" id="ck_batch" class="form-control">
+                                                <select name="food[food_id]" id="ck_batch" class="form-control">
                                                     <?php
                                                     $foods = Food::find_all();
                                                     foreach ($foods as $food) {
 
                                                         ?>
-                                                        <option value="<?php echo $food->food_name;?>"><?php echo $food->food_name; ?></option>
+                                                        <option value="<?php echo $food->id;?>"><?php echo $food->food_name; ?></option>
 
 
                                                     <?php } ?>
@@ -45,21 +45,30 @@
                                                  <div class="col-12">
                                                     <div class="form-group has-success">
                                                         <label for="food_amount" class="control-label mb-1">Amount of Food</label>
-                                                        <input id="cc-pament" name="food[food_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $food->food_id?>">
                                                         <input id="food_amount" name="food[food_amount]" type="text" class="form-control cc-name valid" data-val="true" placeholder="kg" data-val-required="Please enter the name on card"
-                                                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" onblur="autoInput()" value="">
+                                                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
                                                         <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                                     </div>
                                                     </div>
 
                                                  </div>
-
-                                            <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Price of Food</label>
-                                                <input id="cc-number" name="food[food_price]" type="tel" class="form-control cc-number identified visa" value="" data-val="true"
-                                                    data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number"
-                                                    autocomplete="cc-number">
-                                                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="food_price" class="control-label mb-1">Price of Food</label>
+                                                        <input id="food_price" name="food[food_price]" type="tel" class="form-control cc-number identified visa" value="" data-val="true"
+                                                            data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number"
+                                                            autocomplete="cc-number">
+                                                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="food_unit" class="control-label mb-1">Food Unit Price</label>
+                                                    <div class="input-group">
+                                                        <input id="food_unit_price" name="food[food_unit_price]" type="tel" class="form-control cc-cvc" onclick="Calculate()" value="" data-val="true" data-val-required="Please enter the security code"
+                                                               data-val-cc-cvc="Please enter a valid security code" autocomplete="off">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
@@ -76,7 +85,6 @@
                                                     <div class="input-group">
                                                         <input id="x_card_code" name="food[retailer_name]" type="tel" class="form-control cc-cvc" value="" data-val="true" data-val-required="Please enter the security code"
                                                             data-val-cc-cvc="Please enter a valid security code" autocomplete="off">
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,9 +97,12 @@
                                             </div>
                                         </form>
                                         <script>
-                                            function autoInput() {
-                                                var food_number = document.getElementById("food_amount").value;
-                                                document.getElementById("food_invent").value=food_number;
+                                            function Calculate()
+                                            {
+                                                var foodAmount = document.getElementById('food_amount').value;
+                                                var foodPrice = document.getElementById('food_price').value;
+                                                document.getElementById('food_unit_price').value=parseInt(foodPrice) /      parseInt(foodAmount);
+
                                             }
                                         </script>
                                     </div>

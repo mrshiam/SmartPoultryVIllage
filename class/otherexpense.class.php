@@ -33,12 +33,11 @@ class OtherExpenses extends Database {
 
 class Customer extends Database{
     static protected $table_name = 'customer_details';
-    static protected $db_columns = ['id', 'customer_name', 'customer_address','customer_type', 'customer_phone'];
+    static protected $db_columns = ['id', 'customer_name', 'customer_address', 'customer_phone'];
 
     public $id;
     public $customer_name;
     public $customer_address;
-    public $customer_type;
     public $customer_phone;
 
 
@@ -49,7 +48,6 @@ class Customer extends Database{
         //$this->brand = isset($args['brand']) ? $args['brand'] : '';
         $this->customer_name = $args['customer_name'] ?? '';
         $this->customer_address = $args['customer_address'] ?? '';
-        $this->customer_type = $args['customer_type'] ?? '';
         $this->customer_phone = $args['customer_phone'] ?? '';
 
 

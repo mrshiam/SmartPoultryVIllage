@@ -10,7 +10,7 @@ if(!isset($_GET['id'])) {
     redirect_to(url_for('med_purchase_repo.php'));
 }
 $id = $_GET['id'];
-$med = Medicine::find_by_id($id);
+$med = MedicinePurchase::find_by_id($id);
 if($med == false) {
     redirect_to(url_for('med_purchase_repo.php'));
 }
@@ -66,54 +66,59 @@ if(is_post_request()) {
                                 redirect_to(url_for('med_purchase_repo.php'));
                             }
                             ?>
-                            <form action="med_purchase_update.php?id=<?php echo $id?>" id="medForm" method="post" novalidate="novalidate">
-                                <div class="form-group">
-                                    <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
-                                    <input id="cc-pament" name="med[med_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $med->med_name ?>">
-                                </div>
-                                <div class = row >
-                                    <div class = col-6 >
+                            <form action="med_purchase_input.php" id="medForm" method="post" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col-6">
                                         <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
+                                            <select name="med[med_id]" id="med_id" class="form-control">
+                                                <?php
+                                                $mednames = Medicine::find_all();
+                                                foreach ($mednames as $medname) {
 
-                                            <label for="select" class=" form-control-label">Select Med Type</label>
-                                            <select name="med[med_type]" id="med_type_selection" onchange="changeValue()" class="form-control">
-                                                <option value="<?php echo $med->med_type ?>" selected="">Please select</option>
-                                                <option value="1">Powder</option>
-                                                <option value="2">Liquid</option>
+                                                    ?>
+                                                    <option value="<?php echo $medname->id;?>"><?php echo $medname->med_name; ?></option>
+
+
+                                                <?php } ?>
                                             </select>
-
                                         </div>
                                     </div>
                                     <div class = col-6 >
                                         <div class="form-group">
 
                                             <label for="select" class=" form-control-label">Type Unit</label>
-                                            <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="<?php echo $med->med_unit ?>">
+                                            <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="<?php echo $med->med_unit ?>" readonly>
                                         </div>
                                     </div>
                                 </div>
-                                <script>
-                                    var unitArray = ["","kg","lit"];
-                                    function changeValue() {
-                                        var u = document.getElementById("med_type_selection");
-                                        var u_value = u.options[u.selectedIndex].value;
-                                        document.getElementById('med_unit').value = unitArray[u_value];
-
-                                    }
-                                </script>
 
                                 <div class="form-group has-success">
                                     <label for="cc-name" class="control-label mb-1">Amount of Medicine</label>
-                                    <input id="cc-name" name="med[med_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Amount of Med"
+                                    <input id="med_amount" name="med[med_amount]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Amount of Med"
                                            autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="<?php echo $med->med_amount ?>">
                                     <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="cc-number" class="control-label mb-1">Price of Medicine</label>
-                                    <input id="cc-number" name="med[med_price]" type="text" class="form-control cc-number identified visa" value="<?php echo $med->med_price ?>" data-val="true"
-                                           data-val-required="Please enter the card number" data-val-cc-number="Please enter Price of Medicine"
-                                           autocomplete="cc-number">
-                                    <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="cc-number" class="control-label mb-1">Price of Medicine</label>
+                                            <input id="med_price" name="med[med_price]" type="text" class="form-control cc-number identified visa" value="<?php echo $med->med_price ?>" data-val="true"
+                                                   data-val-required="Please enter the card number" data-val-cc-number="Please enter Price of Medicine"
+                                                   autocomplete="cc-number">
+                                            <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="cc-number" class="control-label mb-1">Medicine Unit Price</label>
+                                            <input id="med_unit_price" name="med[med_unit_price]" type="text" class="form-control cc-number identified visa" onclick="Calculate()" value="<?php echo $med->med_unit_price ?>" data-val="true"
+                                                   data-val-required="Please enter the card number" data-val-cc-number="Please enter Price of Medicine"
+                                                   autocomplete="cc-number">
+                                            <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-6">

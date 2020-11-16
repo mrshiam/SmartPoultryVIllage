@@ -23,7 +23,9 @@
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h3 class="text-center title-2">Add Food Item</h3>
+                                        <?php echo validate() ?>
                                     </div>
+
                                     <hr>
                                     <form action="food_input.php" method="post" novalidate="novalidate">
                                         <div class="form-group">
@@ -32,7 +34,13 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Food Unit Price</label>
+                                                    <input id="cc-pament" name="food[food_unit_price]" type="text" class="form-control" placeholder="tk" aria-required="true" aria-invalid="false" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="cc-exp" class="control-label mb-1">Adding Date</label>
                                                     <input id="cc-exp" name="food[adding_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"

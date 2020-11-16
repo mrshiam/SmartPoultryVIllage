@@ -25,37 +25,48 @@
                         <table class="table table-data2">
                             <thead>
                             <tr>
-                                <th>Medicine ID</th>
-                                <th>Number Of Medicine</th>
+                                <th>Medicine Name</th>
                                 <th>Amount of Medicine Given</th>
+                                <th>Chicken's Batch Name</th>
                                 <th>Given Date</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $givenmeds = MedicineGiven::find_all();
-                            foreach ($givenmeds as $givenmed) {
+                            $current_page = $_GET['page'] ?? 1;
+                            $per_page = 2;
+                            $total_count = MedicineGiven::count_all();
+
+                            $pagination = new Pagination($current_page, $per_page, $total_count);
+                            $sql = "SELECT med_name,med_given.id,med_given_amount,batch_name,med_given_date FROM `med_given` 
+                                    INNER JOIN med_item
+                                    ON med_item.id = med_given.med_id ";
+                            $sql .= "LIMIT {$per_page} ";
+                            $sql .= "OFFSET {$pagination->offset()}";
+                            $givenmeds = Database::$database->query($sql);
+                            foreach ($givenmeds as $givenmed=>$value) {
                                 ?>
                                 <tr class="tr-shadow">
 
-                                    <td><?php echo $givenmed->id ?></td>
+
                                     <td>
-                                        <?php echo $givenmed->gmed_name ?>
+                                        <?php echo $value['med_name'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $givenmed->med_given_amount ?>
+                                        <?php echo $value['med_given_amount'] ?>
                                     </td>
-                                    <td><?php echo $givenmed->med_given_date ?></td>
+                                    <td><?php echo $value['batch_name'] ?></td>
+                                    <td><?php echo $value['med_given_date'] ?></td>
 
                                     <td>
                                         <div class="table-data-feature">
 
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <a class = "action" href="med_given_update.php?id=<?php echo $givenmed->id ?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                <a class = "action" href="med_given_update.php?id=<?php echo $value['id'] ?>"> <i class="zmdi zmdi-edit"></i></a>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="med_given_delete.php?id=<?php echo $givenmed->id ?>"><i class="zmdi zmdi-delete"></i></a>
+                                                <a class = "delete" data-confirm = "Are you want to delete this  item?" href="med_given_delete.php?id=<?php echo $value['id'] ?>"><i class="zmdi zmdi-delete"></i></a>
                                             </button>
 
                                         </div>
@@ -87,6 +98,10 @@
                     </div>
                     <!-- END DATA TABLE -->
                 </div>
+                <?php
+                $url =('med_given_repo.php');
+                echo $pagination->page_links($url);
+                ?>
             </div>
         </div>
     </div>

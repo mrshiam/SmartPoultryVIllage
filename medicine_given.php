@@ -28,17 +28,17 @@
                                             <div class="form-group">
 
                                                 <label for="select" class=" form-control-label">Name of The Medicine</label>
-                                                <select name="med[gmed_name]" id="select" class="form-control">
+                                                <select name="med[med_id]" id="med_id" class="form-control">
                                                     <?php
                                                     $mymed = Medicine::find_all();
                                                     foreach ($mymed as $med) {
 
                                                         ?>
-                                                        <option value="<?php echo $med->med_name;?>"><?php echo $med->med_name;?></option>
+                                                        <option value="<?php echo $med->id;?>"><?php echo $med->med_name;?></option>
 
                                                     <?php } ?>
                                                 </select>
-                                                <input id="cc-pament" name="med[med_id]" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $med->med_id?>">
+                                                
                                             </div>
 
                                                 <div class="row">

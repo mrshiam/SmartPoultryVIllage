@@ -88,9 +88,9 @@
                                                         <?php
                                                         $customers = Customer::find_all();
                                                         foreach ($customers as $customer) {
-                                                            $type = 'Chicken Customer';
+
                                                             ?>
-                                                            <option value="<?php if ($customer->customer_type == $type) {echo $customer->customer_name;}?>"><?php  if ($customer->customer_type == $type) {echo $customer->customer_name;}?></option>
+                                                            <option value="<?php echo $customer->customer_name;?>"><?php  echo $customer->customer_name;?></option>
 
                                                         <?php } ?>
                                                     </select>

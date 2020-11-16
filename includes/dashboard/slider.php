@@ -20,6 +20,10 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
+                            <a class="js-arrow" href="dashboard.php">
+                                <i class="zmdi zmdi-money"></i>Dashboard</a>
+                        </li>
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="zmdi zmdi-card"></i>Expense</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -90,6 +94,12 @@
                                 <i class="zmdi zmdi-chart"></i>Reports</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
+                                    <a href="food_item.php">Food Items</a>
+                                </li>
+                                <li>
+                                    <a href="med_item.php">Medicine Items</a>
+                                </li>
+                                <li>
                                     <a href="chicken_purchase_repo.php">Chicken Purchase</a>
                                 </li>
                                 <li>
@@ -117,10 +127,16 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi-border-color"></i>Farm Records Report</a>
+                                <i class="fa fa-table"></i>Farm Records Report</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="chicken_inven_repo.php">Chicken Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="food_inventory.php">Food Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="med_inventory.php">Medicine Inventory</a>
                                 </li>
                                 <li>
                                     <a href="food_given_repo.php">Food Given</a>
@@ -133,6 +149,9 @@
                                 </li>
                                 <li>
                                     <a href="customer_details_repo.php">Customer Details</a>
+                                </li>
+                                <li>
+                                    <a href="batch_details.php">Chicken Batch Details</a>
                                 </li>
 
                             </ul>
@@ -154,6 +173,10 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="dashboard.php">
+                                <i class="fas fa-tachometer-alt"></i></i>Dashboard</a>
+                        </li>
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="zmdi zmdi-card"></i>Expense</a>
@@ -226,6 +249,12 @@
                                 <i class="zmdi zmdi-chart"></i>Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
+                                    <a href="food_item.php">Food Items</a>
+                                </li>
+                                <li>
+                                    <a href="med_item.php">Medicine Items</a>
+                                </li>
+                                <li>
                                     <a href="chicken_purchase_repo.php">Chicken Purchase</a>
                                 </li>
                                 <li>
@@ -254,10 +283,16 @@
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi-border-color"></i>Farm Records Report</a>
+                                <i class="fa fa-table"></i>Farm Records Report</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="chicken_inven_repo.php">Chicken Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="food_inventory.php">Food Inventory</a>
+                                </li>
+                                <li>
+                                    <a href="med_inventory.php">Medicine Inventory</a>
                                 </li>
                                 <li>
                                     <a href="food_given_repo.php">Food Given</a>
@@ -270,6 +305,9 @@
                                 </li>
                                 <li>
                                     <a href="customer_details_repo.php">Customer Details</a>
+                                </li>
+                                <li>
+                                    <a href="batch_details.php">Chicken Batch Details</a>
                                 </li>
 
                             </ul>

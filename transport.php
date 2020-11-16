@@ -30,10 +30,19 @@
                                                 <input id="cc-pament" name="transport[transport_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
                                             </div>
                                             <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1">Reason of Using Transport</label>
-                                                <input id="cc-name" name="transport[reason_use]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter Reason of Using Transport"
-                                                    autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                <label for="cc-name" class="control-label mb-1">Batch Name</label>
+                                                <select name="transport[batch_name]" id="ck_batch" class="form-control">
+                                                    <?php
+                                                    $chickens = Chicken::find_all();
+                                                    foreach ($chickens as $chicken) {
+
+                                                        ?>
+                                                        <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Transportation Coast</label>

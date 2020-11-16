@@ -158,11 +158,12 @@ class EggSale extends Database
 class Food extends Database {
 
     static protected $table_name = 'food_item';
-    static protected $db_columns = ['food_id', 'food_name','adding_date'];
+    static protected $db_columns = ['id', 'food_name','food_unit_price','adding_date'];
 
 
-    public $food_id;
+    public $id;
     public $food_name;
+    public $food_unit_price;
     public $adding_date;
 
 
@@ -171,9 +172,24 @@ class Food extends Database {
     {
         //$this->brand = isset($args['brand']) ? $args['brand'] : '';
         $this->food_name = $args['food_name'] ?? '';
+        $this->food_unit_price = $args['food_unit_price'] ?? '';
         $this->adding_date = $args['adding_date'] ?? '';
 
     }
+
+    public function validate() {
+        if($this->food_name='')
+            $this->errors[]="Food Name Cannot be Blank";
+        if($this->food_unit_price='')
+            $this->errors[]="Food Unit Price Cannot be Blank";
+        if($this->adding_date='')
+            $this->errors[]="Food Adding Time Cannot be Blank";
+        return $this->errors;
+    }
+
+
+
+
 
 
 
@@ -186,12 +202,13 @@ class Food extends Database {
 class FoodPurchase extends Database {
 
     static protected $table_name = 'food_purchase_detail';
-    static protected $db_columns = ['food_purchase_id','food_id','food_amount','food_price','purchase_date','retailer_name'];
+    static protected $db_columns = ['id','food_id','food_amount','food_price','food_unit_price','purchase_date','retailer_name'];
 
-    public $food_purchase_id;
+    public $id;
     public $food_id;
     public $food_amount;
     public $food_price;
+    public $food_unit_price;
     public $purchase_date;
     public $retailer_name;
 
@@ -203,6 +220,7 @@ class FoodPurchase extends Database {
         $this->food_id = $args['food_id'] ?? '';
         $this->food_amount = $args['food_amount'] ?? '';
         $this->food_price = $args['food_price'] ?? '';
+        $this->food_unit_price = $args['food_unit_price'] ?? '';
         $this->purchase_date = $args['purchase_date'] ?? '';
         $this->retailer_name = $args['retailer_name'] ?? '';
 

@@ -28,6 +28,7 @@
                                     <th>Employee ID</th>
                                     <th>Employee Name</th>
                                     <th>Employee's Address</th>
+                                    <th>Employee's Phone No</th>
                                     <th>Salary Amount</th>
                                     <th>Salary Given Date</th>
 
@@ -36,31 +37,43 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $employees = Employee::find_all();
-                                foreach ($employees as $employee) {
+                                $current_page = $_GET['page'] ?? 1;
+                                $per_page = 2;
+                                $total_count = Employee::count_all();
+
+                                $pagination = new Pagination($current_page, $per_page, $total_count);
+
+                                $sql = "SELECT * FROM employee_salary ";
+                                $sql .= "LIMIT {$per_page} ";
+                                $sql .= "OFFSET {$pagination->offset()}";
+                                $employees = Database::$database->query($sql);
+                                foreach ($employees as $employee=>$value) {
                                     ?>
                                     <tr class="tr-shadow">
 
-                                        <td><?php echo $employee->id ?></td>
+                                        <td><?php echo $value['id'] ?></td>
                                         <td>
-                                            <?php echo $employee->employee_name ?>
+                                            <?php echo $value['employee_name'] ?>
                                         </td>
                                         <td>
-                                            <?php echo $employee->employee_address ?>
+                                            <?php echo $value['employee_address'] ?>
                                         </td>
-                                        <td><?php echo $employee->salary_amount ?></td>
                                         <td>
-                                            <?php echo $employee->given_date ?>
+                                            <?php echo $value['employee_phone'] ?>
+                                        </td>
+                                        <td><?php echo $value['salary_amount'] ?></td>
+                                        <td>
+                                            <?php echo $value['given_date'] ?>
                                         </td>
 
                                         <td>
                                             <div class="table-data-feature">
 
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <a class = "action" href="employee_salary_update.php?id=<?php echo $employee->id?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                    <a class = "action" href="employee_salary_update.php?id=<?php echo $value['id']?>"> <i class="zmdi zmdi-edit"></i></a>
                                                 </button>
                                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <a class = "delete" data-confirm = "Are you want to delete this  item?" href="employee_salary_delete.php?id=<?php echo $employee->id?>"><i class="zmdi zmdi-delete"></i></a>
+                                                    <a class = "delete" data-confirm = "Are you want to delete this  item?" href="employee_salary_delete.php?id=<?php echo $value['id']?>"><i class="zmdi zmdi-delete"></i></a>
                                                 </button>
 
                                             </div>
@@ -92,6 +105,10 @@
                         </div>
                         <!-- END DATA TABLE -->
                     </div>
+                    <?php
+                    $url =('employee_salary_repo.php');
+                    echo $pagination->page_links($url);
+                    ?>
                 </div>
             </div>
         </div>

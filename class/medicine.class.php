@@ -3,12 +3,13 @@
 class Medicine extends Database {
 
     static protected $table_name = 'med_item';
-    static protected $db_columns = ['med_id', 'med_name', 'med_type', 'med_unit','adding_date'];
+    static protected $db_columns = ['id', 'med_name', 'med_type', 'med_unit', 'med_unit_price', 'adding_date'];
 
-    public $med_id;
+    public $id;
     public $med_name;
     public $med_type;
     public $med_unit;
+    public $med_unit_price;
     public $adding_date;
     public const MedicineType = [
         1 => 'Powder',
@@ -21,6 +22,7 @@ class Medicine extends Database {
         $this->med_name = $args['med_name'] ?? '';
         $this->med_type = $args['med_type'] ?? '';
         $this->med_unit = $args['med_unit'] ?? '';
+        $this->med_unit_price = $args['med_unit_price'] ?? '';
         $this->adding_date = $args['adding_date'] ?? '';
 
 
@@ -36,13 +38,14 @@ class Medicine extends Database {
 class MedicinePurchase extends Database {
 
     static protected $table_name = 'med_purchase';
-    static protected $db_columns = ['id','med_id', 'med_unit','med_amount', 'med_price','med_pdate','med_rname'];
+    static protected $db_columns = ['id','med_id', 'med_unit','med_amount', 'med_price','med_unit_price', 'med_pdate','med_rname'];
 
     public $id;
     public $med_id;
     public $med_unit;
     public $med_amount;
     public $med_price;
+    public $med_unit_price;
     public $med_pdate;
     public $med_rname;
 
@@ -54,6 +57,7 @@ class MedicinePurchase extends Database {
         $this->med_unit = $args['med_unit'] ?? '';
         $this->med_amount = $args['med_amount'] ?? '';
         $this->med_price = $args['med_price'] ?? '';
+        $this->med_unit_price = $args['med_unit_price'] ?? '';
         $this->med_pdate = $args['med_pdate'] ?? '';
         $this->med_rname = $args['med_rname'] ?? '';
 
