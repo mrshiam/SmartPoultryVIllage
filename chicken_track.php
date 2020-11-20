@@ -28,7 +28,7 @@
                                             <div class = "row">
                                                 <div class = "col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-payment" class="control-label mb-1">NUmber of Chicken</label>
+                                                        <label for="cc-payment" class="control-label mb-1">Number of Chicken</label>
                                                         <input id="cc-pament" name="chicken[chicken_number]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
                                                     </div>
                                                 </div>

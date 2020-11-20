@@ -19,7 +19,7 @@ if(is_post_request()) {
 } else {
     // display the form
     $food = new Food;
-    header('add_fooditem.php');
+    redirect_to(url_for('add_fooditem.php'));
 }
 
 ?>

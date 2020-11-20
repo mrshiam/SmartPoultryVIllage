@@ -37,7 +37,7 @@
                                                     foreach ($foods as $food) {
 
                                                         ?>
-                                                        <option value="<?php echo $food->food_id;?>"><?php echo $food->food_name; ?></option>
+                                                        <option value="<?php echo $food->id;?>"><?php echo $food->food_name; ?></option>
 
 
                                                     <?php } ?>

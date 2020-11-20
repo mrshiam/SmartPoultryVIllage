@@ -12,12 +12,12 @@ if(is_post_request()) {
     if($result === true) {
         $new_number = $mortality->chicken_number;
         $b_name = $mortality->batch_name;
-        $chickens = Chicken::find_all();
-        foreach ($chickens as $chicken) {
-            if($chicken->chicken_number > 0 ) {
-                $updated_number = ($chicken->chicken_number - $new_number);
-            }
+        $sql = "SELECT * FROM chicken_purchase WHERE batch_name='$b_name'";
+        $chickens = Database::$database->query($sql);
+        foreach ($chickens as $chicken=>$value) {
+            $total_chicken = $value['chicken_number'];
         }
+        $updated_number = ($total_chicken - $new_number);
 
         $sql = "UPDATE chicken_purchase SET ";
         $sql .= "chicken_number='" . $updated_number . "' ";

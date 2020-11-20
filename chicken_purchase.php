@@ -68,7 +68,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Purchase Date</label>
-                                                        <input id="cc-exp" name="chicken[purchase_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
+                                                        <input id="purchase_date" name="chicken[purchase_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
                                                             data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
                                                             autocomplete="cc-exp">
                                                         <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
@@ -96,13 +96,31 @@
                                                 var chicken_number = document.getElementById("tchicken").value;
                                                 document.getElementById("invent_chicken").value=chicken_number;
                                             }
-                                        function Calculate()
-                                        {
-                                        var totalchick = document.getElementById('tchicken').value;
-                                        var totalMoney = document.getElementById('tmoney').value;
-                                        document.getElementById('price_chicken').value=parseInt(totalMoney) /       parseInt(totalchick);
 
-                                        }
+                                            function Calculate()
+                                            {
+                                            var totalchick = document.getElementById('tchicken').value;
+                                            var totalMoney = document.getElementById('tmoney').value;
+                                            document.getElementById('price_chicken').value=parseInt(totalMoney) /       parseInt(totalchick);
+
+                                            }
+
+                                            $(document).ready(function () {
+                                                var currentDate = new Date();
+                                                $('.disableFuturedate').datepicker({
+                                                    format: 'dd/mm/yyyy',
+                                                    autoclose:true,
+                                                    endDate: "currentDate",
+                                                    maxDate: currentDate
+                                                }).on('changeDate', function (ev) {
+                                                    $(this).datepicker('hide');
+                                                });
+                                                $('.disableFuturedate').keyup(function () {
+                                                    if (this.value.match(/[^0-9]/g)) {
+                                                        this.value = this.value.replace(/[^0-9^-]/g, '');
+                                                    }
+                                                });
+                                            });
                                         </script>
                                     </div>
                                 </div>

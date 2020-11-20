@@ -69,13 +69,13 @@ if(is_post_request()) {
                                 <form action="chicken_sale_update.php?id=<?php echo $id?>" method="post" novalidate="novalidate">
                                     <div class="form-group">
                                         <label for="ck_batch" class="control-label mb-1">Chicken Batch Name</label>
-                                        <select name="chicken[batch_name]" id="ck_batch" value="<?php echo $chicksale->batch_name ?>" class="form-control">
+                                        <select name="chicken[batch_name]" id="ck_batch"  class="form-control">
                                             <?php
                                             $chickens = Chicken::find_all();
                                             foreach ($chickens as $chicken) {
 
                                                 ?>
-                                                <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+                                                <option value="<?php echo $chicken->batch_name;?>" <?php if($chicken->batch_name==$chicksale->batch_name) echo 'selected="selected"' ?>><?php echo $chicken->batch_name; ?></option>
 
                                             <?php } ?>
 
@@ -126,13 +126,12 @@ if(is_post_request()) {
                                         </div>
                                         <div class="col-6">
                                             <label for="x_card_code" class="control-label mb-1">Customer Name</label>
-                                            <select name="chicken[customer_name]" id="select" value="<?php echo $chicksale->customer_name ?>" class="form-control">
+                                            <select name="chicken[customer_name]" id="select" class="form-control">
                                                 <?php
                                                 $customers = Customer::find_all();
                                                 foreach ($customers as $customer) {
-                                                    $type = 'Chicken Customer';
                                                     ?>
-                                                    <option value="<?php if ($customer->customer_type == $type) {echo $customer->customer_name;}?>"><?php  if ($customer->customer_type == $type) {echo $customer->customer_name;}?></option>
+                                                    <option value="<?php echo $chicksale->customer_name ?>" <?php if($customer->customer_name==$chicksale->batch_name) echo 'selected="selected"' ?>><?php echo $chicksale->customer_name ?></option>
 
                                                 <?php } ?>
                                             </select>

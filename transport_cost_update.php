@@ -76,9 +76,8 @@ if(is_post_request()) {
                                                 <?php
                                                 $chickens = Chicken::find_all();
                                                 foreach ($chickens as $chicken) {
-
                                                     ?>
-                                                    <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+                                                    <option value="<?php echo $chicken->batch_name;?>" <?php if($chicken->batch_name==$transport->batch_name) echo 'selected="selected"' ?>><?php echo $chicken->batch_name; ?></option>
 
                                                 <?php } ?>
 

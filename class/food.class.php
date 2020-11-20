@@ -178,12 +178,16 @@ class Food extends Database {
     }
 
     public function validate() {
-        if($this->food_name='')
-            $this->errors[]="Food Name Cannot be Blank";
-        if($this->food_unit_price='')
-            $this->errors[]="Food Unit Price Cannot be Blank";
-        if($this->adding_date='')
-            $this->errors[]="Food Adding Time Cannot be Blank";
+        $this->errors = [];
+        if(is_blank($this->food_name)) {
+            $this->errors[] = "Food Name Cannot be Blank";
+        }
+        if(is_blank($this->food_unit_price)) {
+            $this->errors[] = "Food Unit Price Cannot be Blank";
+        }
+        if(is_blank($this->adding_date)) {
+            $this->errors[] = "Food Adding Time Cannot be Blank";
+        }
         return $this->errors;
     }
 

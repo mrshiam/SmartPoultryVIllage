@@ -10,7 +10,8 @@ public $email_address;
 public $phone_number;
 public $password;
 public $confirm_password;
-protected $hashed_password;
+public $hashed_password;
+public $password_required = true;
 
 public function __construct($args=[]){
     $this->farm_name = $args['farm_name'] ?? '';
@@ -22,13 +23,14 @@ public function __construct($args=[]){
 
 }
 
-    protected function set_hashed_password() {
+    public function set_hashed_password() {
         $this->hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
     public function verify_password($password) {
         return password_verify($password, $this->hashed_password);
     }
+
 
     protected function create() {
         $this->set_hashed_password();
@@ -44,6 +46,38 @@ public function __construct($args=[]){
             $this->password_required = false;
         }
         return parent::update();
+    }
+
+
+    static public function find_by_email($email_address) {
+        $sql = "SELECT * FROM " . static::$table_name . " ";
+        $sql .= "WHERE email_address='" . self::$database->escape_string($email_address) . "'";
+        $obj_array = static::find_by_sql($sql);
+        if(!empty($obj_array)) {
+            return array_shift($obj_array);
+        } else {
+            return false;
+        }
+    }
+    static public function find_by_full_name($full_name) {
+        $sql = "SELECT * FROM " . static::$table_name . " ";
+        $sql .= "WHERE full_name='" . self::$database->escape_string($full_name) . "'";
+        $obj_array = static::find_by_sql($sql);
+        if(!empty($obj_array)) {
+            return array_shift($obj_array);
+        } else {
+            return false;
+        }
+    }
+    static public function find_by_farm_name($farm_name) {
+        $sql = "SELECT * FROM " . static::$table_name . " ";
+        $sql .= "WHERE farm_name='" . self::$database->escape_string($farm_name) . "'";
+        $obj_array = static::find_by_sql($sql);
+        if(!empty($obj_array)) {
+            return array_shift($obj_array);
+        } else {
+            return false;
+        }
     }
 
 

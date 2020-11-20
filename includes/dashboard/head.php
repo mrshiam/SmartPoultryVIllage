@@ -1,4 +1,4 @@
-<?php ob_start(); ?>
+
 <?php include("includes/init.php");?>
 
 <!DOCTYPE html>
@@ -35,8 +35,8 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/mylogo.png" rel="icon">
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
@@ -51,5 +51,6 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+
 
 </head>

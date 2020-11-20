@@ -16,11 +16,11 @@ class Employee extends Database {
 
     public function __construct($args=[]) {
         //$this->brand = isset($args['brand']) ? $args['brand'] : '';
-        $this->employee_name = $args['employee_name'] ?? '';
-        $this->employee_address = $args['employee_address'] ?? '';
-        $this->employee_phone = $args['employee_phone'] ?? '';
-        $this->salary_amount = $args['salary_amount'] ?? '';
-        $this->given_date = $args['given_date'] ?? '';
+        $this->employee_name = $args['employee_name'] ? $args['employee_name']: '';
+        $this->employee_address = $args['employee_address'] ? $args['employee_address']: '';
+        $this->employee_phone = $args['employee_phone'] ? $args['employee_phone']: '';
+        $this->salary_amount = $args['salary_amount'] ? $args['salary_amount']:'';
+        $this->given_date = $args['given_date'] ?  $args['given_date']:'';
     }
 
 

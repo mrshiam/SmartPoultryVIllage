@@ -2,23 +2,55 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
 <?php require_once('includes/init.php'); ?>
+<?php  ?>
 
 
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
+            <?php if($session->is_logged_in()) {
+                $id = $session->user_id
+                ?>
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
+                            <?php $user = User::find_by_id($id)?>
                           <h1>
-                         
+                              <?php echo $user->farm_name ?>
                             </h1>
+                            <div class="account-wrap">
+                                <div class="account-item clearfix js-item-menu">
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#"><?php echo $user->full_name ?></a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                        <div class="info">
+                                                <h5 class="name">
+                                                    <a href="#"><?php echo $user->full_name ?></a>
+                                                </h5>
+                                                <span class="email"><?php echo $user->email_address ?></span>
+                                        </div>
+                                        <div class="account-dropdown__body">
+                                            <div class="account-dropdown__item">
+                                                <a href="user_details.php?id=<?php echo $id ?>">
+                                                    <i class="zmdi zmdi-account"></i>Account</a>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__footer">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </header>
+            <?php } ?>
+
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
@@ -32,11 +64,53 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
+                                                <i class="fa fa-money"></i>
                                             </div>
+                                            <?php $sql = "SELECT (SELECT SUM(salary_amount) AS 'salary' FROM `employee_salary`)+(SELECT SUM(element_price) AS 'outex' FROM `other_expenses`)+(SELECT SUM(TotalExpence) AS 'chickex' FROM (SELECT chicken_purchase.batch_name,q1.Sell,q2.Purchase,q3.FoodCost,q4.MedCost,q5.Mortality,q6.TransportCost,(q2.Purchase+q3.FoodCost+q4.MedCost+q6.TransportCost) AS 'TotalExpence' FROM chicken_purchase 
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(tamount_money) AS 'Sell' FROM `chicken_sale` GROUP BY batch_name) AS q1 
+                                                        ON q1.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,chicken_price AS 'Purchase' FROM chicken_purchase GROUP BY batch_name) AS q2
+                                                        ON q2.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(food_unit_price*gfood_amount) AS 'FoodCost' FROM `food_given` INNER JOIN food_item ON food_given.food_id=food_item.id GROUP BY batch_name) AS q3
+                                                        ON q3.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(med_unit_price*med_given_amount) AS 'MedCost' FROM med_given INNER JOIN med_item ON med_given.med_id=med_item.id GROUP BY batch_name) AS q4
+                                                        ON q4.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(chicken_number) AS 'Mortality' FROM chicken_mortality GROUP BY batch_name) AS q5
+                                                        ON q5.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(transport_cost) AS 'TransportCost' FROM transpotation GROUP BY batch_name) AS q6
+                                                        ON q6.batch_name = chicken_purchase.batch_name) AS q1) AS 'TotalCost' FROM (SELECT SUM(salary_amount) AS 'salary' FROM `employee_salary`) AS q1, (SELECT SUM(element_price) AS 'outex' FROM `other_expenses`) AS q2,(SELECT SUM(TotalExpence) AS 'chickex' FROM (SELECT chicken_purchase.batch_name,q1.Sell,q2.Purchase,q3.FoodCost,q4.MedCost,q5.Mortality,q6.TransportCost,(q2.Purchase+q3.FoodCost+q4.MedCost+q6.TransportCost) AS 'TotalExpence' FROM chicken_purchase 
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(tamount_money) AS 'Sell' FROM `chicken_sale` GROUP BY batch_name) AS q1 
+                                                        ON q1.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,chicken_price AS 'Purchase' FROM chicken_purchase GROUP BY batch_name) AS q2
+                                                        ON q2.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(food_unit_price*gfood_amount) AS 'FoodCost' FROM `food_given` INNER JOIN food_item ON food_given.food_id=food_item.id GROUP BY batch_name) AS q3
+                                                        ON q3.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(med_unit_price*med_given_amount) AS 'MedCost' FROM med_given INNER JOIN med_item ON med_given.med_id=med_item.id GROUP BY batch_name) AS q4
+                                                        ON q4.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(chicken_number) AS 'Mortality' FROM chicken_mortality GROUP BY batch_name) AS q5
+                                                        ON q5.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(transport_cost) AS 'TransportCost' FROM transpotation GROUP BY batch_name) AS q6
+                                                        ON q6.batch_name = chicken_purchase.batch_name) AS q1) AS q3
+                                                        ";
+                                            $costs = Database::$database->query($sql);
+                                            foreach ($costs as $cost=>$value){
+                                            ?>
                                             <div class="text">
-                                                <h2>10368</h2>
-                                                <span>members online</span>
+                                                <h2><?php echo $value['TotalCost']?>৳</h2>
+                                                <?php } ?>
+                                                <span>Total Cost</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -50,7 +124,7 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-money"></i>
+                                                <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <?php
                                             $sql = "SELECT SUM(tamount_money) AS 'income' FROM `chicken_sale`";
@@ -58,7 +132,7 @@
                                             foreach ($incomes as $income=>$value){
                                             ?>
                                             <div class="text">
-                                                <h2><?php echo $value['income']  ?></h2>
+                                                <h2><?php echo $value['income']  ?>৳</h2>
                                                 <?php } ?>
                                                 <span>Total Earnings</span>
                                             </div>
@@ -74,7 +148,7 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-calendar-note"></i>
+                                                <i class="fa fa-gift"></i>
                                             </div>
                                             <?php
                                             $sql = "SELECT SUM(chicken_inventory) AS 'invent' FROM `chicken_purchase`";
@@ -98,7 +172,7 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-money"></i>
+                                                <i class="fa fa-heartbeat"></i>
                                             </div>
                                             <?php
                                             $sql = "SELECT SUM(chicken_number) AS 'mortal' FROM `chicken_mortality`";
@@ -117,6 +191,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
@@ -136,19 +211,28 @@
                                             </div>
                                             <div class="chart-info__right">
                                                 <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
+                                                        <span class="index incre">
+                                                            <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
                                                     <span class="label">products</span>
                                                 </div>
                                                 <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
+                                                        <span class="index decre">
+                                                            <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
                                                     <span class="label">services</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="recent-report__chart">
-                                            <canvas id="recent-rep-chart"></canvas>
+                                            <?php
+                                            $sql = "SELECT SUM(income) AS 'income',SUM(cost) AS 'expense' FROM (SELECT batch_name,SUM(tamount_money) AS 'income' FROM `chicken_sale` GROUP BY batch_name) AS q1
+                                                INNER JOIN
+                                                (SELECT batch_name,SUM(chicken_price) AS 'cost' FROM `chicken_purchase` GROUP BY batch_name) AS q2
+                                                ON q1.batch_name = q2.batch_name";
+                                            $charts = Database::$database->query($sql);
+                                            foreach ($charts as $chart=>$value){
+                                                ?>
+                                                <canvas id="recent-rep-chart"data-optiona="<?php echo $value['expense'] ?>" data-optionb="<?php echo $value['income'] ?>"></canvas>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -156,23 +240,32 @@
                             <div class="col-lg-6">
                                 <div class="au-card chart-percent-card">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">char by %</h3>
+                                        <h3 class="title-2 tm-b-5">Chicken Inventory</h3>
                                         <div class="row no-gutters">
                                             <div class="col-xl-6">
                                                 <div class="chart-note-wrap">
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--blue"></span>
-                                                        <span>products</span>
+                                                        <span>Chicken Mortality</span>
                                                     </div>
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--red"></span>
-                                                        <span>services</span>
+                                                        <span>Total Alive Chicken</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
                                                 <div class="percent-chart">
-                                                    <canvas id="percent-chart"></canvas>
+                                                    <?php $sql = "SELECT SUM(Mortal) AS 'Mortal',SUM(Chicken) AS 'Chicken' FROM (SELECT batch_name,SUM(chicken_inventory) AS 'Chicken' FROM `chicken_purchase` GROUP BY batch_name) AS q1 
+                                                                    INNER JOIN (SELECT batch_name,SUM(chicken_number) AS 'Mortal' FROM `chicken_mortality` GROUP BY batch_name) AS q2
+                                                                    ON q1.batch_name = q2.batch_name
+                                                                    ";
+                                                    $piecharts = Database::$database->query($sql);
+                                                    foreach ($piecharts as $piechart=>$value){
+                                                    ?>
+
+                                                    <canvas id="percent-chart" data-optiona="<?php echo $value['Mortal'] ?>" data-optionb="<?php echo $value['Chicken'] ?>"></canvas>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>

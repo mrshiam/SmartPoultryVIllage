@@ -79,7 +79,7 @@ if(is_post_request()) {
                                                 foreach ($fooditems as $fooditem) {
 
                                                     ?>
-                                                    <option value="<?php echo $fooditem->id;?>"><?php echo $fooditem->food_name; ?></option>
+                                                    <option value="<?php echo $fooditem->id;?> <?php if($fooditem->id == $food->food_id) echo 'selected="selected"'?>"><?php echo $fooditem->food_name; ?></option>
 
 
                                                 <?php } ?>

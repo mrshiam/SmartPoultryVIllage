@@ -9,6 +9,7 @@ if(is_post_request()) {
     $result = $users->save();
 
     if($result === true) {
+        redirect_to(url_for('login_form.php'));
 
     } else {
         // show errors

@@ -77,7 +77,7 @@ if(is_post_request()) {
                                                 foreach ($mednames as $medname) {
 
                                                     ?>
-                                                    <option value="<?php echo $medname->id;?>"><?php echo $medname->med_name; ?></option>
+                                                    <option value="<?php echo $medname->id;?> <?php if($medname->id == $med->med_id) echo 'selected="selected"' ?>"><?php echo $medname->med_name; ?></option>
 
 
                                                 <?php } ?>

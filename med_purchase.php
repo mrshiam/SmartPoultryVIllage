@@ -29,7 +29,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
-                                                        <select name="med[med_id]" id="med_id" class="form-control">
+                                                        <select name="med[med_id]" id="med_id" onchange="showUser(this.value)" class="form-control">
                                                             <?php
                                                             $meds = Medicine::find_all();
                                                             foreach ($meds as $med) {
@@ -44,9 +44,20 @@
                                                 </div>
                                             <div class = col-6 >
                                                 <div class="form-group">
+                                                    <?php
+                                                    if(isset($_GET['u'])) {
+                                                    $u = intval($_GET['u']);
+                                                    $sql = "SELECT med_unit FROM med_item WHERE id='$u'";
+                                                    $med_units = Database::$database->query($sql);
+                                                    foreach ($med_units as $med_unit=>$value){ ?>
 
                                                     <label for="select" class=" form-control-label">Type Unit</label>
-                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="" readonly>
+                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="<?php echo $value['med_unit']?>" readonly>
+                                                        <?php } ?>
+                                                       <?php }else{ ?>
+                                                        <label for="select" class=" form-control-label">Type Unit</label>
+                                                        <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="" readonly>
+                                                   <?php } ?>
                                                 </div>
                                             </div>
                                             </div>
@@ -112,6 +123,21 @@
                                                 var medPrice = document.getElementById('med_price').value;
                                                 document.getElementById('med_unit_price').value=parseInt(medPrice) /      parseInt(medAmount);
 
+                                            }
+                                            function showUser(str) {
+                                                if (str === "") {
+                                                    document.getElementById("med_unit").innerHTML = "";
+                                                    return;
+                                                } else {
+                                                    var xmlhttp = new XMLHttpRequest();
+                                                    xmlhttp.onreadystatechange = function() {
+                                                        if (this.readyState == 4 && this.status == 200) {
+                                                            document.getElementById("med_unit").innerHTML = this.responseText;
+                                                        }
+                                                    };
+                                                    xmlhttp.open("GET","med_purchase.php?u="+str,true);
+                                                    xmlhttp.send();
+                                                }
                                             }
                                         </script>
                                     </div>

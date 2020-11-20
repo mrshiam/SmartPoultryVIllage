@@ -1,5 +1,7 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php include_once 'includes/init.php' ?>
+
 
     <div class="page-container">
         <!-- HEADER DESKTOP-->
@@ -19,42 +21,45 @@
                         <div class="col-lg-3"></div>
                         <div class="col-lg-6">
                             <div class="card">
-                                <div class="card-header">Add Item</div>
+                                <div class="card-header"></div>
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h3 class="text-center title-2">Add Food Item</h3>
-                                        <?php echo validate() ?>
+
+                                        <?php
+                                        if(isset($errors) && (!$errors)) {
+
+                                        }else{
+                                            echo display_errors($errors);
+                                        }
+                                        ?>
                                     </div>
 
                                     <hr>
                                     <form action="food_input.php" method="post" novalidate="novalidate">
                                         <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Food Label Name</label>
-                                            <input id="cc-pament" name="food[food_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                            <label for="food_name" class="control-label mb-1">Food Label Name</label>
+                                            <input id="food_name" name="food[food_name]" type="text" class="form-control" value="">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="cc-payment" class="control-label mb-1">Food Unit Price</label>
-                                                    <input id="cc-pament" name="food[food_unit_price]" type="text" class="form-control" placeholder="tk" aria-required="true" aria-invalid="false" value="">
+                                                    <label for="food_unit_price" class="control-label mb-1">Food Unit Price</label>
+                                                    <input id="food_unit_price" name="food[food_unit_price]" type="text" class="form-control" placeholder="tk" value="">
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="cc-exp" class="control-label mb-1">Adding Date</label>
-                                                    <input id="cc-exp" name="food[adding_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
-                                                           data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
-                                                           autocomplete="cc-exp">
-                                                    <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    <label for="adding_date" class="control-label mb-1">Adding Date</label>
+                                                    <input id="adding_date" name="food[adding_date]" type="date" class="form-control" value="" placeholder="MM / YY">
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
                                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                                 <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                                <span id="payment-button-amount">Submit</span>
-                                                <span id="payment-button-sending" style="display:none;">Submiting....</span>
+                                                <span id="add-button">Add Item</span>
                                             </button>
                                         </div>
                                     </form>

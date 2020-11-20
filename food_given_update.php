@@ -70,13 +70,13 @@ if(is_post_request()) {
                                     <div class="form-group">
 
                                         <label for="select" class=" form-control-label">Name of The Food</label>
-                                        <select name="gfood[gfood_name]" id="select"  class="form-control">
+                                        <select name="gfood[food_id]" id="select"  class="form-control">
                                             <?php
                                             $myfood = Food::find_all();
                                             foreach ($myfood as $food) {
 
                                                 ?>
-                                                <option value="<?php echo $food->food_name;?>"><?php echo $food->food_name;?></option>
+                                                <option value="<?php echo $food->id;?>" <?php if($food->id == $food_given->id) echo 'selected = "selected"' ?>><?php echo $food->food_name;?></option>
 
                                             <?php } ?>
                                         </select>
@@ -100,7 +100,7 @@ if(is_post_request()) {
                                                     foreach ($chickens as $chicken) {
 
                                                         ?>
-                                                        <option value="<?php echo $chicken->batch_name;?>"><?php echo $chicken->batch_name; ?></option>
+                                                        <option value="<?php echo $chicken->batch_name;?>" <?php if($chicken->batch_name==$food_given->batch_name) echo 'selected="selected"' ?>><?php echo $chicken->batch_name; ?></option>
 
                                                     <?php } ?>
                                                 </select>

@@ -67,9 +67,27 @@ if(is_post_request()) {
                                 }
                                 ?>
                                 <form action="chicken_inven_update.php?id=<?php echo $id?>" method="post" novalidate="novalidate">
-                                    <div class="form-group">
-                                        <label for="cc-payment" class="control-label mb-1">NUmber of Chicken</label>
-                                        <input id="cc-pament" name="chicken[chicken_number]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $chicken_inven->chicken_number ?>">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Number of Chicken</label>
+                                                <input id="cc-pament" name="chicken[chicken_number]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $chicken_inven->chicken_number ?>">
+                                            </div>
+                                        </div>
+                                        <div class = "col-6">
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Chicken Batch Name</label>
+                                                <select name="chicken[batch_name]" id="ck_batch" class="form-control">
+                                                    <?php
+                                                    $chickens = Chicken::find_all();
+                                                    foreach ($chickens as $chicken) {
+                                                        ?>
+                                                        <option value="<?php echo $chicken->batch_name;?> <?php if($chicken->batch_name==$chicken_inven->batch_name) echo 'selected="selected"'?>"><?php echo $chicken->batch_name; ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group has-success">
                                         <label for="cc-name" class="control-label mb-1">Reason of Die Or Diesease Name</label>

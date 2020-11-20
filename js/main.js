@@ -332,16 +332,22 @@
     }
 
     // Percent Chart
+
     var ctx = document.getElementById("percent-chart");
     if (ctx) {
       ctx.height = 280;
+      console.log("Percent Chart")
+      console.log(ctx)
+      console.log(ctx.dataset.optiona)
+      console.log(ctx.dataset.optionb)
+      console.log(ctx.height)
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [ctx.dataset.optiona, ctx.dataset.optionb,],
               backgroundColor: [
                 '#00b5e9',
                 '#fa4251'
@@ -360,8 +366,8 @@
             }
           ],
           labels: [
-            'Products',
-            'Services'
+            'Chicken Mortality',
+            'Total Alive Chicken'
           ]
         },
         options: {
@@ -689,6 +695,7 @@
     //Sales chart
     var ctx = document.getElementById("sales-chart");
     if (ctx) {
+
       ctx.height = 150;
       var myChart = new Chart(ctx, {
         type: 'line',
@@ -697,8 +704,8 @@
           type: 'line',
           defaultFontFamily: 'Poppins',
           datasets: [{
-            label: "Foods",
-            data: [0, 30, 10, 120, 50, 63, 10],
+            label: "Chicken's Total Income",
+            data: [0,],
             backgroundColor: 'transparent',
             borderColor: 'rgba(220,53,69,0.75)',
             borderWidth: 3,
@@ -707,8 +714,8 @@
             pointBorderColor: 'transparent',
             pointBackgroundColor: 'rgba(220,53,69,0.75)',
           }, {
-            label: "Electronics",
-            data: [0, 50, 40, 80, 40, 79, 120],
+            label: "Chicken's Total Costing",
+            data: [0,],
             backgroundColor: 'transparent',
             borderColor: 'rgba(40,167,69,0.75)',
             borderWidth: 3,
@@ -761,7 +768,7 @@
               },
               scaleLabel: {
                 display: true,
-                labelString: 'Value',
+                labelString: 'Money',
                 fontFamily: "Poppins"
 
               },

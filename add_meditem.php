@@ -19,7 +19,7 @@
                         <div class="col-lg-3"></div>
                         <div class="col-lg-6">
                             <div class="card">
-                                <div class="card-header">Add Item</div>
+                                <div class="card-header"></div>
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h3 class="text-center title-2">Add Medicine Item</h3>
@@ -29,8 +29,8 @@
                                         <div class = row >
                                             <div class = col-6 >
                                                 <div class="form-group">
-                                                    <label for="cc-payment" class="control-label mb-1">Medicine Name</label>
-                                                    <input id="cc-pament" name="med[med_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                    <label for="med_name" class="control-label mb-1">Medicine Name</label>
+                                                    <input id="med_name" name="med[med_name]" type="text" class="form-control"  value="">
                                                 </div>
                                             </div>
                                             <div class = col-6 >
@@ -48,13 +48,13 @@
                                             <div class = col-6 >
                                                 <div class="form-group">
                                                     <label for="select" class=" form-control-label">Type Unit</label>
-                                                    <input id="med_unit" name="med[med_unit]"  class="form-control cc-number identified visa"  value="">
+                                                    <input id="med_unit" name="med[med_unit]"  class="form-control"  value="">
                                                 </div>
                                             </div>
                                             <div class = col-6 >
                                                 <div class="form-group">
                                                     <label for="select" class=" form-control-label">Medicine Unit Price</label>
-                                                    <input id="med_unit" name="med[med_unit_price]"  class="form-control cc-number identified visa"  value="">
+                                                    <input id="med_unit" name="med[med_unit_price]"  class="form-control"  value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -62,19 +62,16 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="cc-exp" class="control-label mb-1">Adding Date</label>
-                                                    <input id="cc-exp" name="med[adding_date]" type="date" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration"
-                                                           data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
-                                                           autocomplete="cc-exp">
-                                                    <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                                    <label for="adding_date" class="control-label mb-1">Adding Date</label>
+                                                    <input id="adding_date" name="med[adding_date]" type="date" class="form-control" value=""  placeholder="MM / YY">
+
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
                                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                                 <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                                <span id="payment-button-amount">Submit</span>
-                                                <span id="payment-button-sending" style="display:none;">Submiting....</span>
+                                                <span id="add-button">Add Item</span>
                                             </button>
                                         </div>
                                     </form>
