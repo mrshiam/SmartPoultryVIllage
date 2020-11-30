@@ -2,7 +2,7 @@
 My Project
 To Use the project 
 1. create a database name 'smartpoultryvillage' in phpmyadmin server.
-2. Export database.sql file
+2. Import database.sql file
 
 For Accessing to the system use
 Email: test@gmail.com
