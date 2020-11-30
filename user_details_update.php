@@ -1,6 +1,7 @@
 <?php include_once 'includes/head.php' ?>
 <?php include_once 'includes/top_bar.php'; ?>
 <?php include_once 'includes/nav_bar.php' ?>
+<?php require_login(); ?>
 <?php
 require_once('includes/init.php');
 if(!isset($_GET['id'])) {
@@ -20,7 +21,8 @@ if(is_post_request()) {
     $result = $user->save();
 
     if($result === true) {
-
+        $session->message('User Data Updated successfully.');
+        redirect_to(url_for('user_details_update.php'));
 
     } else {
         // show errors
@@ -33,12 +35,15 @@ if(is_post_request()) {
 }
 ?>
     <div class="header text-center">
-        <h1><u>Update User Details</u></h1>
+
+
     </div>
     <div class="container-fluid card form_container">
         <div class="row card-row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8 card_form">
+                <h1 class="text-center"><u>Update User Details</u></h1>
+                <?php echo display_session_message(); ?>
                 <?php
                 if(!isset($user)) {
                     redirect_to(url_for('user_details.php'));
@@ -48,6 +53,7 @@ if(is_post_request()) {
                     <div class="card-body card-block">
                         <div class="row form-group">
                             <div class="col-12">
+                                <?php echo display_errors($user->errors); ?>
                                 <div class="form-group">
                                     <label for="company" class=" form-control-label">Farm Name</label>
                                     <input type="text" id="farm_name" name ="user[farm_name]" value="<?php echo $user->farm_name ?>" placeholder="Enter your farm name" class="form-control">

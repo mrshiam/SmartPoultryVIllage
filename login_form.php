@@ -40,13 +40,14 @@ if(is_post_request()) {
 ?>
 
 <section>
-    <div class="row">
+    <div class="row formRow">
         <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <div class="card">
-                    <div class="card-header text-center img_card">
-                        <img src="images/chicken.png" alt="">
+                    <div class="card-header text-center">
+                        <img src="images/chicken.png" alt="" style="height: 50px;">
                         <h3><u>Login Form</u></h3>
+                        <?php echo display_session_message(); ?>
                         <?php echo display_errors($errors); ?>
                     </div>
                     <div class="card-body card-block">
@@ -71,6 +72,9 @@ if(is_post_request()) {
                                 <button type="submit" class="btn btn-success btn-sm">Log In</button>
                             </div>
                         </form>
+                        <div class="form-group text-center">
+                            <a href="reg_form.php">Register Now If don't have account!</a>
+                        </div>
                     </div>
                 </div>
             </div>

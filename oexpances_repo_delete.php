@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -18,8 +19,8 @@ if($oexpense == false) {
 if(is_post_request()) {
 
     $result = $oexpense->delete();
-    $_SESSION['message'] = 'The Other Expenses was deleted successfully.';
-    header("Location: oexpances_repo.php");
+    $session->message('The Other Expenses was deleted successfully.');
+    redirect_to(url_for('oexpances_repo.php'));
 
 } else {
 

@@ -2,55 +2,107 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d1c1eb3-96c5-4f6a-b88e-bea651826799" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/class/session.class.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getunit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/update_pass.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_details.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_details_update.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_customer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_fooditem.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_fooditem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_meditem.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_meditem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/about.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/slide/slide-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/slide/slide-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/slide/slide-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/changelog.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/batch_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/batch_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_input.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_inven_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_inven_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_inven_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_inven_repo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chicken_inven_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_inven_update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chicken_mortality.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_mortality.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chicken_purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_purchase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_purchase_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_purchase_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_purchase_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_purchase_repo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_purchase_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_purchase_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_sale.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_sale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_sale_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_sale_delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chicken_sale_input.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_sale_input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chicken_sale_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_sale_repo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chicken_sale_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_sale_update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chicken_track.php" beforeDir="false" afterPath="$PROJECT_DIR$/chicken_track.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/employee.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/employee.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/food.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/food.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/food_given.class.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/medicine.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/medicine.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/otherexpense.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/otherexpense.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/session.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/session.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/transportation.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/transportation.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/user.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/user.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collected_egg.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/customer_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_details_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/customer_details_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_details_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/customer_details_repo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_details_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/customer_details_update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_collected.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_collected_repo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_sale.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_sale_delete.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_sale_input.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_sale_repo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/egg_sale_update.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee_salary.php" beforeDir="false" afterPath="$PROJECT_DIR$/employee_salary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee_salary_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/employee_salary_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee_salary_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/employee_salary_repo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee_salary_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/employee_salary_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expenses.php" beforeDir="false" afterPath="$PROJECT_DIR$/expenses.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food_given.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_given.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_given_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_given_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_given_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_given_repo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food_given_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_given_update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food_input.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_inventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_item.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_item.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_item_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_item_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_item_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_item_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_purchase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_purchase_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_purchase_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_purchase_input.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_purchase_input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food_purchase_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_purchase_repo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food_purchase_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/food_purchase_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getunit.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/given_food.php" beforeDir="false" afterPath="$PROJECT_DIR$/given_food.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/given_med.php" beforeDir="false" afterPath="$PROJECT_DIR$/given_med.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/dashboard/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/dashboard/head.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/dashboard/slider.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/dashboard/slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/error_functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/error_functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/head.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/init.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/nav_bar.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/nav_bar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/top_bar.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/top_bar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/validations.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/validations.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/login_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_given_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_given_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_given_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_given_repo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/med_given_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_given_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_input.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_inventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_item.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_item.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_item_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_item_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_item_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_item_update.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/med_purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_purchase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_purchase_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_purchase_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_purchase_input.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_purchase_input.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_purchase_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_purchase_repo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/med_purchase_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/med_purchase_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medicine_given.php" beforeDir="false" afterPath="$PROJECT_DIR$/medicine_given.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oexpances_repo.php" beforeDir="false" afterPath="$PROJECT_DIR$/oexpances_repo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oexpances_repo_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/oexpances_repo_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oexpenses_repo_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/oexpenses_repo_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/other_expenses.php" beforeDir="false" afterPath="$PROJECT_DIR$/other_expenses.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reg_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/reg_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/salary_given.php" beforeDir="false" afterPath="$PROJECT_DIR$/salary_given.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transport.php" beforeDir="false" afterPath="$PROJECT_DIR$/transport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transport_cost.php" beforeDir="false" afterPath="$PROJECT_DIR$/transport_cost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transport_cost_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/transport_cost_delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/transport_cost_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/transport_cost_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transportation_cost_report.php" beforeDir="false" afterPath="$PROJECT_DIR$/transportation_cost_report.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update_pass.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/user_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_details_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/user_details_update.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +213,35 @@
       <workItem from="1605807042949" duration="1392000" />
       <workItem from="1605815170812" duration="556000" />
       <workItem from="1605815864113" duration="5959000" />
-      <workItem from="1605887366624" duration="12259000" />
+      <workItem from="1605887366624" duration="12437000" />
+      <workItem from="1605938267552" duration="937000" />
+      <workItem from="1605946109390" duration="723000" />
+      <workItem from="1605955095370" duration="164000" />
+      <workItem from="1605958747617" duration="2272000" />
+      <workItem from="1605971380165" duration="1246000" />
+      <workItem from="1606047102462" duration="598000" />
+      <workItem from="1606066766618" duration="534000" />
+      <workItem from="1606068235636" duration="5518000" />
+      <workItem from="1606107633501" duration="1548000" />
+      <workItem from="1606109466159" duration="529000" />
+      <workItem from="1606220609726" duration="22000" />
+      <workItem from="1606242545449" duration="3193000" />
+      <workItem from="1606330453060" duration="4820000" />
+      <workItem from="1606404255336" duration="2214000" />
+      <workItem from="1606543269362" duration="47990000" />
+      <workItem from="1606603470805" duration="218000" />
+      <workItem from="1606607628430" duration="64000" />
+      <workItem from="1606608433511" duration="91000" />
+      <workItem from="1606610102258" duration="861000" />
+      <workItem from="1606611117149" duration="122000" />
+      <workItem from="1606611683132" duration="79000" />
+      <workItem from="1606612140305" duration="536000" />
+      <workItem from="1606640361446" duration="766000" />
+      <workItem from="1606650618958" duration="3501000" />
+      <workItem from="1606655820329" duration="760000" />
+      <workItem from="1606673267431" duration="280000" />
+      <workItem from="1606691180423" duration="1102000" />
+      <workItem from="1606741289213" duration="917000" />
     </task>
     <servers />
   </component>
@@ -181,10 +261,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603064195906" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1605887369882">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1606748874370">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605887369882" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606748874370" />
     <state x="605" y="110" width="710" height="819" key="find.popup" timestamp="1604178241947">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -193,10 +273,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604381680625" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605902809568">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606584968150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605902809568" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606584968150" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -205,11 +285,6 @@
           <url>file://$PROJECT_DIR$/js/main.js</url>
           <line>210</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/js/main.js</url>
-          <line>796</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

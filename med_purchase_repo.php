@@ -1,24 +1,58 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
 <?php require_once('includes/init.php'); ?>
+<?php require_login(); ?>
 
 <div class="page-container">
-    <header class="header-desktop">
-        <div class="section__content section__content--p30">
-            <div class="container-fluid">
-                <div class="header-wrap">
-                    <h3> Medicine Purchase Report</h3>
+    <?php if($session->is_logged_in()) {
+        $id = $session->user_id
+        ?>
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <?php $user = User::find_by_id($id)?>
+                        <h4>
+                            <i class="fa fa-university" aria-hidden="true" style="margin-right: 5px;"></i>Farm Name:   <?php echo $user->farm_name ?>
+                        </h4>
+                        <div class="account-wrap">
+                            <div class="account-item clearfix js-item-menu">
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#"><?php echo $user->full_name ?></a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info">
+                                        <h5 class="name">
+                                            <a href="#"><?php echo $user->full_name ?></a>
+                                        </h5>
+                                        <span class="email"><?php echo $user->email_address ?></span>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="user_details.php?id=<?php echo $id ?>">
+                                                <i class="zmdi zmdi-account"></i>Account</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
+                                        <a href="logout.php">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    <?php } ?>
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <!-- DATA TABLE -->
-                        <h3 class="title-5 m-b-35">data table</h3>
+                        <h3 class="title-5 m-b-35">Medicine Purchase Report Table</h3>
+                        <?php echo display_session_message(); ?>
 
                     </div>
                     <div class="table-responsive table-responsive-data2">
@@ -39,7 +73,7 @@
                             <tbody>
                             <?php
                             $current_page = $_GET['page'] ?? 1;
-                            $per_page = 2;
+                            $per_page = 5;
                             $total_count = MedicinePurchase::count_all();
 
                             $pagination = new Pagination($current_page, $per_page, $total_count);

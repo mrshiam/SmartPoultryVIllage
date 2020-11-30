@@ -1,6 +1,7 @@
 <?php
 
 require_once('includes/init.php');
+require_login();
 
 if(is_post_request()) {
 
@@ -17,18 +18,41 @@ if(is_post_request()) {
             ON q2.med_id = med_item.id WHERE id='$mid'
             ";
     $medinventorys = Database::$database->query($sql);
-    foreach ($medinventorys as $medinventory=>$value){
+    foreach ($medinventorys as $medinventory => $value) {
         $med_invent_id = $value['id'];
         $med_invent_total = $value['TotalAmount'];
     }
-    if($med->med_id==$med_invent_id && $med->med_given_amount <= $med_invent_total) {
-        $result = $med->save();
-    }else{
-        redirect_to(url_for('med_purchase.php'));
+    if (!empty($med_invent_total)) {
+        if ($med->med_id == $med_invent_id && $med->med_given_amount <= $med_invent_total) {
+
+        } else {
+            $session->message('There is not sufficient Medicine for this item in the stoke.');
+            redirect_to(url_for('med_inventory.php'));
+        }
+        $med->validate();
+        if (empty($med->errors)) {
+            $result = $med->save();
+
+    } else {
+        $frm_errors = (serialize($med->errors));
+        $frm_error = (urlencode($frm_errors));
+        redirect_to(url_for('medicine_given.php?error=' . $frm_error));
+    }
+}else{
+        $med->validate();
+        if (empty($med->errors)) {
+            $result = $med->save();
+
+        } else {
+            $frm_errors = (serialize($med->errors));
+            $frm_error = (urlencode($frm_errors));
+            redirect_to(url_for('medicine_given.php?error=' . $frm_error));
+        }
     }
 
     if($result === true) {
-
+        $session->message('Medicine Given Data Added successfully.');
+        redirect_to(url_for('med_given_repo.php'));
 
     } else {
         // show errors
@@ -36,7 +60,6 @@ if(is_post_request()) {
 
 } else {
     // display the form
-    $med = new MedicineGiven;
 }
 
 ?>

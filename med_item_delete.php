@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -18,8 +19,8 @@ if($med == false) {
 if(is_post_request()) {
 
     $result = $med->delete();
-
-    header("Location: med_item.php");
+    $session->message('The Medicine Item was deleted successfully.');
+    redirect_to(url_for('med_item.php'));
 
 } else {
 

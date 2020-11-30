@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -17,11 +18,10 @@ if($transport == false) {
 
 if(is_post_request()) {
 
-    // Delete bicycle
-    $result = $transport->delete();
-    $_SESSION['message'] = 'The Transportation Info was deleted successfully.';
-    header("Location: transportation_cost_report.php");
 
+    $result = $transport->delete();
+    $session->message('The Transportation Cost was deleted successfully.');
+    redirect_to(url_for('transportation_cost_report.php'));
 } else {
     // Display form
 }

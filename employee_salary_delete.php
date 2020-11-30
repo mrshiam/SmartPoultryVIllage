@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -18,8 +19,8 @@ if($employee == false) {
 if(is_post_request()) {
 
     $result = $employee->delete();
-    $_SESSION['message'] = 'The Employee Salary was deleted successfully.';
-    header("Location: employee_salary_repo.php");
+    $session->message('The Employee Salary was deleted successfully.');
+    redirect_to(url_for('employee_salary_repo.php'));
 
 } else {
 

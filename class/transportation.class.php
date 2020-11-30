@@ -22,6 +22,23 @@ class Transportation extends Database {
 
     }
 
+    public function validate() {
+        $this->errors = [];
+        if(is_blank($this->transport_name)) {
+            $this->errors[] = "Trasnport Name Cannot be Blank";
+        }
+        if(is_blank($this->batch_name)) {
+            $this->errors[] = "Chicken Batch Name Should Be Selected";
+        }
+        if(is_blank($this->transport_cost)) {
+            $this->errors[] = "Trasnport Cost Cannot be Blank";
+        }
+        if(is_blank($this->used_date)) {
+            $this->errors[] = "Using Date Cannot be Blank";
+        }
+        return $this->errors;
+    }
+
 
 
 

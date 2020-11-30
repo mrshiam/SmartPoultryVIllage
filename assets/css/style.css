@@ -1354,15 +1354,11 @@ section {
 .card_form{
     padding-top: 37px;
 }
+.formRow{
+  width: 100%;
+}
 
-.image_card img{
-    width: 100%;
-    height: auto;
-    padding-top: 90px;
-}
-.img_card img{
-    height: 50px;
-}
+
 /* Pagination */
 
 .pagination {

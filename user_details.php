@@ -2,17 +2,18 @@
 <?php include_once 'includes/top_bar.php'; ?>
 <?php include_once 'includes/nav_bar.php' ?>
 <?php require_once('includes/init.php'); ?>
+<?php require_login(); ?>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row formRow">
             <div class="col-2"></div>
-                <div class="col-8">
+                <div class="col-8" style="height: 360px;">
 
-                    <div class="table-responsive-sm">
+                    <div class="table-responsive">
                         <table class="table">
 
                             <?php
-                            $id = $_GET['id'];
+                            $id = $session->user_id;
                             $users = User::find_by_id($id);
                             ?>
                             <thead>

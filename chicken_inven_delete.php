@@ -1,6 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
-
+<?php require_login(); ?>
 
 <?php
 require_once('includes/init.php');
@@ -18,8 +18,8 @@ if($chicken_inven == false) {
 if(is_post_request()) {
 
     $result = $chicken_inven->delete();
-    $_SESSION['message'] = 'The chicken was deleted successfully.';
-    header("Location: chicken_inven_repo.php");
+    $session->message('The chicken was deleted successfully.');
+    redirect_to(url_for('chicken_inven_repo.php'));
 
 } else {
 

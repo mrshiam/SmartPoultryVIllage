@@ -23,6 +23,64 @@ public function __construct($args=[]){
 
 }
 
+    Public function validate() {
+        $this->errors = [];
+
+        if(is_blank($this->farm_name)) {
+            $this->errors[] = "Farm name cannot be blank.";
+        } elseif (!has_length($this->farm_name, array('min' => 2, 'max' => 255))) {
+            $this->errors[] = "Farm name name must be between 2 and 255 characters.";
+        }
+
+        if(is_blank($this->full_name)) {
+            $this->errors[] = "Full name cannot be blank.";
+        } elseif (!has_length($this->full_name, array('min' => 3, 'max' => 255))) {
+            $this->errors[] = "Full name must be between 2 and 255 characters.";
+        }
+
+        if(is_blank($this->email_address)) {
+            $this->errors[] = "Email cannot be blank.";
+        } elseif (!has_valid_email_format($this->email_address)) {
+            $this->errors[] = "Email must be a valid format.";
+        }elseif (!has_unique_email($this->email_address, $this->id ?? 0)) {
+            $this->errors[] = "Email is Already in Use. Try another.";
+        }
+
+        if(is_blank($this->phone_number)) {
+            $this->errors[] = "Phone Number cannot be blank.";
+        } elseif (!has_length($this->phone_number, array('min' => 11, 'max' => 11))) {
+            $this->errors[] = "Phone Number Must be 11 Digit";
+        }elseif (!preg_match('/[0-9]/', $this->phone_number)) {
+            $this->errors[] = "Phone Number Must Be in number";
+        }
+
+
+        if($this->password_required) {
+            if(is_blank($this->password)) {
+                $this->errors[] = "Password cannot be blank.";
+            } elseif (!has_length($this->password, array('min' => 6))) {
+                $this->errors[] = "Password must contain 6 or more characters";
+            } elseif (!preg_match('/[A-Z]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 uppercase letter";
+            } elseif (!preg_match('/[a-z]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 lowercase letter";
+            } elseif (!preg_match('/[0-9]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 number";
+            } elseif (!preg_match('/[^A-Za-z0-9\s]/', $this->password)) {
+                $this->errors[] = "Password must contain at least 1 symbol";
+            }
+
+            if(is_blank($this->confirm_password)) {
+                $this->errors[] = "Confirm password cannot be blank.";
+            } elseif ($this->password !== $this->confirm_password) {
+                $this->errors[] = "Password and confirm password must match.";
+            }
+        }
+
+        return $this->errors;
+    }
+
+
     public function set_hashed_password() {
         $this->hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
     }

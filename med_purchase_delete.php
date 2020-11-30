@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -10,7 +11,7 @@ if(!isset($_GET['id'])) {
     redirect_to(url_for('med_purchase_repo.php'));
 }
 $id = $_GET['id'];
-$med = Medicine::find_by_id($id);
+$med = MedicinePurchase::find_by_id($id);
 if($med == false) {
     redirect_to(url_for('med_purchase_repo.php'));
 }
@@ -18,8 +19,8 @@ if($med == false) {
 if(is_post_request()) {
 
     $result = $med->delete();
-    $_SESSION['message'] = 'The Medicine was deleted successfully.';
-    header("Location: med_purchase_repo.php");
+    $session->message('The Medicine Purchase was deleted successfully.');
+    redirect_to(url_for('med_purchase_repo.php'));
 
 } else {
 

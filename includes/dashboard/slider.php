@@ -5,7 +5,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="index.php">
                             <img src="assets/img/mylogo.png" alt="SmartPoultryVillage" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -61,9 +61,6 @@
                                 <li>
                                     <a href="chicken_sale.php">Chicken Sale</a>
                                 </li>
-                                <li>
-                                    <a href="egg_sale.php">Egg Sale</a>
-                                </li>
 
                             </ul>
                         </li>
@@ -81,9 +78,6 @@
                                     <a href="medicine_given.php">Medicine Given</a>
                                 </li>
                                 <li>
-                                    <a href="egg_collected.php">Egg Collected</a>
-                                </li>
-                                <li>
                                     <a href="customer_details.php">Add Customer</a>
                                 </li>
 
@@ -91,7 +85,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi-chart"></i>Reports</a>
+                                <i class="zmdi zmdi-chart"></i>Expense Reports</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="food_item.php">Food Items</a>
@@ -101,6 +95,9 @@
                                 </li>
                                 <li>
                                     <a href="chicken_purchase_repo.php">Chicken Purchase</a>
+                                </li>
+                                <li>
+                                    <a href="chicken_sale_repo.php"> Chicken Sale</a>
                                 </li>
                                 <li>
                                     <a href="food_purchase_repo.php">Food Purchase</a>
@@ -116,12 +113,6 @@
                                 </li>
                                 <li>
                                     <a href="oexpances_repo.php">Other Expences</a>
-                                </li>
-                                <li>
-                                    <a href="chicken_sale_repo.php"> Chicken Sale</a>
-                                </li>
-                                <li>
-                                    <a href="egg_sale_repo.php">Egg Sale</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,9 +136,6 @@
                                     <a href="med_given_repo.php">Medicine Given</a>
                                 </li>
                                 <li>
-                                    <a href="egg_collected_repo.php">Egg Collection</a>
-                                </li>
-                                <li>
                                     <a href="customer_details_repo.php">Customer Details</a>
                                 </li>
                                 <li>
@@ -166,7 +154,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="index.php">
                     <img src="assets/img/mylogo.png" alt="SmartPoultryVillage" style="height: 100px;"/>
                 </a>
             </div>
@@ -215,9 +203,6 @@
                                 <li>
                                     <a href="chicken_sale.php">Chicken Sale</a>
                                 </li>
-                                <li>
-                                    <a href="egg_sale.php">Egg Sale</a>
-                                </li>
                             </ul>
                         </li>
 
@@ -235,9 +220,6 @@
                                     <a href="medicine_given.php">Medicine Given</a>
                                 </li>
                                 <li>
-                                    <a href="egg_collected.php">Egg Collected</a>
-                                </li>
-                                <li>
                                     <a href="customer_details.php">Add Customer</a>
                                 </li>
 
@@ -246,7 +228,7 @@
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="zmdi zmdi-chart"></i>Reports</a>
+                                <i class="zmdi zmdi-chart"></i>Expense Reports</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="food_item.php">Food Items</a>
@@ -256,6 +238,9 @@
                                 </li>
                                 <li>
                                     <a href="chicken_purchase_repo.php">Chicken Purchase</a>
+                                </li>
+                                <li>
+                                    <a href="chicken_sale_repo.php"> Chicken Sale</a>
                                 </li>
                                 <li>
                                     <a href="food_purchase_repo.php">Food Purchase</a>
@@ -272,12 +257,7 @@
                                 <li>
                                     <a href="oexpances_repo.php">Other Expences</a>
                                 </li>
-                                <li>
-                                    <a href="chicken_sale_repo.php"> Chicken Sale</a>
-                                </li>
-                                <li>
-                                    <a href="egg_sale_repo.php">Egg Sale</a>
-                                </li>
+
                             </ul>
                         </li>
 
@@ -299,9 +279,6 @@
                                 </li>
                                 <li>
                                     <a href="med_given_repo.php">Medicine Given</a>
-                                </li>
-                                <li>
-                                    <a href="egg_collected_repo.php">Egg Collection</a>
                                 </li>
                                 <li>
                                     <a href="customer_details_repo.php">Customer Details</a>

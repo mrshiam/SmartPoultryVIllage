@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -18,8 +19,8 @@ if($chicksale == false) {
 if(is_post_request()) {
 
     $result = $chicksale->delete();
-    $_SESSION['message'] = 'The chicken was deleted successfully.';
-    header("Location: chicken_sale_repo.php");
+    $session->message('The chicken was deleted successfully.');
+    redirect_to(url_for('chicken_sale_repo.php'));
 
 } else {
 

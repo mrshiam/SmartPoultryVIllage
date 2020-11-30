@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -19,7 +20,8 @@ if(is_post_request()) {
 
     $result = $food->delete();
 
-    header("Location: food_item.php");
+    $session->message('The food item was deleted successfully.');
+    redirect_to(url_for('food_item.php'));
 
 } else {
 

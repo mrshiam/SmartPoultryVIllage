@@ -12,6 +12,20 @@
             </div>
         </div>
         <div class="col-lg-6 card_form">
+            <?php
+
+            if(isset($_GET['error'])) {
+                $error = $_GET['error'];
+                $errors = urldecode($error);
+                $frm_errors = unserialize($errors);
+                foreach ($frm_errors as $err)
+                    if (empty($err)) {
+                    } else { ?>
+                        <p class='alert alert-danger'><i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin-right: 5px;"></i><?php echo $err ?></p><br>
+
+                    <?php  }
+            }
+            ?>
                 <form class="reg_form" action="add_user.php" method="post">
                 <div class="card-body card-block">
                     <div class="row form-group">
@@ -66,7 +80,7 @@
                         <button type="submit" class="btn btn-primary btn-sm">Register</button>
                     </div>
                     <div class="form-group text-center">
-                        <a href="#">I have already account</a>
+                        <a href="login_form.php">I have already account</a>
                     </div>
                 </div>
                 </form>

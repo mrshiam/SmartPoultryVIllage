@@ -30,4 +30,5 @@ spl_autoload_register('my_autoload');
   Database::set_database($database);
   $session = new Session;
 
+
 ?>

@@ -19,9 +19,23 @@ class OtherExpenses extends Database {
         $this->buying_reason = $args['buying_reason'] ?? '';
         $this->element_price = $args['element_price'] ?? '';
         $this->buying_date = $args['buying_date'] ?? '';
+    }
 
-
-
+    public function validate() {
+        $this->errors = [];
+        if(is_blank($this->element_name)) {
+            $this->errors[] = "Element Name Cannot be Blank";
+        }
+        if(is_blank($this->buying_reason)) {
+            $this->errors[] = "Reason Cannot be Blank";
+        }
+        if(is_blank($this->element_price)) {
+            $this->errors[] = "Amount of Money Cannot be Blank";
+        }
+        if(is_blank($this->buying_date)) {
+            $this->errors[] = "Buying Date Cannot be Blank";
+        }
+        return $this->errors;
     }
 
 
@@ -51,6 +65,24 @@ class Customer extends Database{
         $this->customer_phone = $args['customer_phone'] ?? '';
 
 
+    }
+
+    public function validate() {
+        $this->errors = [];
+        if(is_blank($this->customer_name)) {
+            $this->errors[] = "Customer Name Cannot be Blank";
+        }
+        if(is_blank($this->customer_address)) {
+            $this->errors[] = "Customer Address Cannot be Blank";
+        }
+        if(is_blank($this->customer_phone)) {
+            $this->errors[] = "Customer Phone Number Cannot be Blank";
+        }elseif (!has_length($this->customer_phone, array('min' => 11, 'max' => 11))) {
+            $this->errors[] = "Phone Number Must be 11 Digit";
+        }elseif (!preg_match('/[0-9]/', $this->customer_phone)) {
+            $this->errors[] = "Phone Number Must Be in number";
+        }
+        return $this->errors;
     }
 
 }

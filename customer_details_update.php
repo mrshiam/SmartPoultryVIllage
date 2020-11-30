@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -23,7 +24,8 @@ if(is_post_request()) {
     $result = $cust_detail->save();
 
     if($result === true) {
-        $_SESSION['message'] = 'The Customer Details was updated successfully.';
+        $session->message('Customer Details Data Updated successfully.');
+        redirect_to(url_for('customer_details_repo.php'));
 
     } else {
         // show errors
@@ -38,15 +40,47 @@ if(is_post_request()) {
 ?>
 <div class="page-container">
     <!-- HEADER DESKTOP-->
-    <header class="header-desktop">
-        <div class="section__content section__content--p30">
-            <div class="container-fluid">
-                <div class="header-wrap">
-
+    <?php if($session->is_logged_in()) {
+        $id = $session->user_id
+        ?>
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <?php $user = User::find_by_id($id)?>
+                        <h4>
+                            <i class="fa fa-university" aria-hidden="true" style="margin-right: 5px;"></i>Farm Name:   <?php echo $user->farm_name ?>
+                        </h4>
+                        <div class="account-wrap">
+                            <div class="account-item clearfix js-item-menu">
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#"><?php echo $user->full_name ?></a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info">
+                                        <h5 class="name">
+                                            <a href="#"><?php echo $user->full_name ?></a>
+                                        </h5>
+                                        <span class="email"><?php echo $user->email_address ?></span>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="user_details.php?id=<?php echo $id ?>">
+                                                <i class="zmdi zmdi-account"></i>Account</a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
+                                        <a href="logout.php">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    <?php } ?>
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">
@@ -54,10 +88,11 @@ if(is_post_request()) {
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-header">Purches</div>
+                            <div class="card-header"></div>
                             <div class="card-body">
                                 <div class="card-title">
                                     <h3 class="text-center title-2">Add Customer</h3>
+                                    <?php echo display_errors($cust_detail->errors); ?>
                                 </div>
                                 <hr>
                                 <?php
@@ -67,32 +102,26 @@ if(is_post_request()) {
                                 ?>
                                 <form action="customer_details_update.php?id=<?php echo $cust_detail->id ?>" method="post" novalidate="novalidate">
                                     <div class="form-group">
-                                        <label for="cc-payment" class="control-label mb-1">Customer Name</label>
-                                        <input id="cc-pament" name="customer[customer_name]" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $cust_detail->customer_name ?>">
+                                        <label for="customer_name" class="control-label mb-1">Customer Name</label>
+                                        <input id="customer_name" name="customer[customer_name]" type="text" class="form-control" value="<?php echo $cust_detail->customer_name ?>">
                                     </div>
                                     <div class = 'row'>
                                         <div class = col-12 >
                                             <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1">Customer Address</label>
-                                                <input id="cc-name" name="customer[customer_address]" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card"
-                                                       autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" value="<?php echo $cust_detail->customer_address ?>">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                <label for="customer_address" class="control-label mb-1">Customer Address</label>
+                                                <input id="customer_address" name="customer[customer_address]" type="text" class="form-control" value="<?php echo $cust_detail->customer_address ?>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cc-number" class="control-label mb-1">Customer Phone</label>
-                                        <input id="cc-number" name="customer[customer_phone]" type="tel" class="form-control cc-number identified visa" value="<?php echo $cust_detail->customer_phone ?>" data-val="true"
-                                               data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number"
-                                               autocomplete="cc-number">
-                                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                                        <label for="customer_phone" class="control-label mb-1">Customer Phone</label>
+                                        <input id="customer_phone" name="customer[customer_phone]" type="tel" class="form-control" value="<?php echo $cust_detail->customer_phone ?>">
                                     </div>
 
                                     <div>
-                                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                        <button id="button" type="submit" class="btn btn-lg btn-info btn-block">
                                             <i class="fa fa-lock fa-lg"></i>&nbsp;
                                             <span id="payment-button-amount">Update Customer Details</span>
-                                            <span id="payment-button-sending" style="display:none;">Submiting....</span>
                                         </button>
                                     </div>
                                 </form>

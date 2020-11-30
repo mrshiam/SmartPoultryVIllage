@@ -93,6 +93,17 @@
     return preg_match($email_regex, $value) === 1;
   }
 
+  function has_unique_email($email_address, $current_id="0") {
+    $user = User::find_by_email($email_address);
+    if($user === false || $user->id == $current_id) {
+      // is unique
+      return true;
+    } else {
+      // not unique
+      return false;
+    }
+  }
+
  
 
 ?>

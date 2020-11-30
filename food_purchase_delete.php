@@ -1,6 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
-
+<?php require_login(); ?>
 
 <?php
 require_once('includes/init.php');
@@ -10,7 +10,7 @@ if(!isset($_GET['id'])) {
     redirect_to(url_for('food_purchase_repo.php'));
 }
 $id = $_GET['id'];
-$food = Food::find_by_id($id);
+$food = FoodPurchase::find_by_id($id);
 if($food == false) {
     redirect_to(url_for('food_purchase_repo.php'));
 }
@@ -19,8 +19,8 @@ if(is_post_request()) {
 
     // Delete bicycle
     $result = $food->delete();
-    $_SESSION['message'] = 'The bicycle was deleted successfully.';
-    header("Location: food_purchase_repo.php");
+    $session->message('The food purchase was deleted successfully.');
+    redirect_to(url_for('food_purchase_repo.php'));
 
 } else {
     // Display form

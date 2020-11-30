@@ -2,7 +2,7 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
 <?php require_once('includes/init.php'); ?>
-<?php  ?>
+<?php require_login(); ?>
 
 
 
@@ -17,9 +17,9 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <?php $user = User::find_by_id($id)?>
-                          <h1>
-                              <?php echo $user->farm_name ?>
-                            </h1>
+                          <h4>
+                              <i class="fa fa-university" aria-hidden="true" style="margin-right: 5px;"></i>Farm Name:   <?php echo $user->farm_name ?>
+                            </h4>
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="content">
@@ -39,7 +39,7 @@
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
+                                            <a href="logout.php">
                                                 <i class="zmdi zmdi-power"></i>Logout</a>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                                                 <i class="fa fa-gift"></i>
                                             </div>
                                             <?php
-                                            $sql = "SELECT SUM(chicken_inventory) AS 'invent' FROM `chicken_purchase`";
+                                            $sql = "SELECT SUM(chicken_number) AS 'invent' FROM `chicken_purchase`";
                                             $inventorys = Database::$database->query($sql);
                                             foreach ($inventorys as $inventory=>$value){
                                             ?>
@@ -172,17 +172,89 @@
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="fa fa-heartbeat"></i>
+                                                <i class="fa fa-dollar"></i>
                                             </div>
                                             <?php
-                                            $sql = "SELECT SUM(chicken_number) AS 'mortal' FROM `chicken_mortality`";
+                                            $sql = "SELECT (SELECT SUM(tamount_money) AS 'income' FROM `chicken_sale`)-( SELECT (SELECT SUM(salary_amount) AS 'salary' FROM `employee_salary`)+(SELECT SUM(element_price) AS 'outex' FROM `other_expenses`)+(SELECT SUM(TotalExpence) AS 'chickex' FROM (SELECT chicken_purchase.batch_name,q1.Sell,q2.Purchase,q3.FoodCost,q4.MedCost,q5.Mortality,q6.TransportCost,(q2.Purchase+q3.FoodCost+q4.MedCost+q6.TransportCost) AS 'TotalExpence' FROM chicken_purchase 
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(tamount_money) AS 'Sell' FROM `chicken_sale` GROUP BY batch_name) AS q1 
+                                                        ON q1.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,chicken_price AS 'Purchase' FROM chicken_purchase GROUP BY batch_name) AS q2
+                                                        ON q2.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(food_unit_price*gfood_amount) AS 'FoodCost' FROM `food_given` INNER JOIN food_item ON food_given.food_id=food_item.id GROUP BY batch_name) AS q3
+                                                        ON q3.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(med_unit_price*med_given_amount) AS 'MedCost' FROM med_given INNER JOIN med_item ON med_given.med_id=med_item.id GROUP BY batch_name) AS q4
+                                                        ON q4.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(chicken_number) AS 'Mortality' FROM chicken_mortality GROUP BY batch_name) AS q5
+                                                        ON q5.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(transport_cost) AS 'TransportCost' FROM transpotation GROUP BY batch_name) AS q6
+                                                        ON q6.batch_name = chicken_purchase.batch_name) AS q1) AS 'TotalCost' FROM (SELECT SUM(salary_amount) AS 'salary' FROM `employee_salary`) AS q1, (SELECT SUM(element_price) AS 'outex' FROM `other_expenses`) AS q2,(SELECT SUM(TotalExpence) AS 'chickex' FROM (SELECT chicken_purchase.batch_name,q1.Sell,q2.Purchase,q3.FoodCost,q4.MedCost,q5.Mortality,q6.TransportCost,(q2.Purchase+q3.FoodCost+q4.MedCost+q6.TransportCost) AS 'TotalExpence' FROM chicken_purchase 
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(tamount_money) AS 'Sell' FROM `chicken_sale` GROUP BY batch_name) AS q1 
+                                                        ON q1.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,chicken_price AS 'Purchase' FROM chicken_purchase GROUP BY batch_name) AS q2
+                                                        ON q2.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(food_unit_price*gfood_amount) AS 'FoodCost' FROM `food_given` INNER JOIN food_item ON food_given.food_id=food_item.id GROUP BY batch_name) AS q3
+                                                        ON q3.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(med_unit_price*med_given_amount) AS 'MedCost' FROM med_given INNER JOIN med_item ON med_given.med_id=med_item.id GROUP BY batch_name) AS q4
+                                                        ON q4.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(chicken_number) AS 'Mortality' FROM chicken_mortality GROUP BY batch_name) AS q5
+                                                        ON q5.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(transport_cost) AS 'TransportCost' FROM transpotation GROUP BY batch_name) AS q6
+                                                        ON q6.batch_name = chicken_purchase.batch_name) AS q1) AS q3) AS GrossProfit FROM (SELECT (SELECT SUM(salary_amount) AS 'salary' FROM `employee_salary`)+(SELECT SUM(element_price) AS 'outex' FROM `other_expenses`)+(SELECT SUM(TotalExpence) AS 'chickex' FROM (SELECT chicken_purchase.batch_name,q1.Sell,q2.Purchase,q3.FoodCost,q4.MedCost,q5.Mortality,q6.TransportCost,(q2.Purchase+q3.FoodCost+q4.MedCost+q6.TransportCost) AS 'TotalExpence' FROM chicken_purchase 
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(tamount_money) AS 'Sell' FROM `chicken_sale` GROUP BY batch_name) AS q1 
+                                                        ON q1.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,chicken_price AS 'Purchase' FROM chicken_purchase GROUP BY batch_name) AS q2
+                                                        ON q2.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(food_unit_price*gfood_amount) AS 'FoodCost' FROM `food_given` INNER JOIN food_item ON food_given.food_id=food_item.id GROUP BY batch_name) AS q3
+                                                        ON q3.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(med_unit_price*med_given_amount) AS 'MedCost' FROM med_given INNER JOIN med_item ON med_given.med_id=med_item.id GROUP BY batch_name) AS q4
+                                                        ON q4.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(chicken_number) AS 'Mortality' FROM chicken_mortality GROUP BY batch_name) AS q5
+                                                        ON q5.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(transport_cost) AS 'TransportCost' FROM transpotation GROUP BY batch_name) AS q6
+                                                        ON q6.batch_name = chicken_purchase.batch_name) AS q1) AS 'TotalCost' FROM (SELECT SUM(salary_amount) AS 'salary' FROM `employee_salary`) AS q1, (SELECT SUM(element_price) AS 'outex' FROM `other_expenses`) AS q2,(SELECT SUM(TotalExpence) AS 'chickex' FROM (SELECT chicken_purchase.batch_name,q1.Sell,q2.Purchase,q3.FoodCost,q4.MedCost,q5.Mortality,q6.TransportCost,(q2.Purchase+q3.FoodCost+q4.MedCost+q6.TransportCost) AS 'TotalExpence' FROM chicken_purchase 
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(tamount_money) AS 'Sell' FROM `chicken_sale` GROUP BY batch_name) AS q1 
+                                                        ON q1.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,chicken_price AS 'Purchase' FROM chicken_purchase GROUP BY batch_name) AS q2
+                                                        ON q2.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(food_unit_price*gfood_amount) AS 'FoodCost' FROM `food_given` INNER JOIN food_item ON food_given.food_id=food_item.id GROUP BY batch_name) AS q3
+                                                        ON q3.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(med_unit_price*med_given_amount) AS 'MedCost' FROM med_given INNER JOIN med_item ON med_given.med_id=med_item.id GROUP BY batch_name) AS q4
+                                                        ON q4.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN 
+                                                        (SELECT batch_name,SUM(chicken_number) AS 'Mortality' FROM chicken_mortality GROUP BY batch_name) AS q5
+                                                        ON q5.batch_name = chicken_purchase.batch_name
+                                                        LEFT JOIN
+                                                        (SELECT batch_name,SUM(transport_cost) AS 'TransportCost' FROM transpotation GROUP BY batch_name) AS q6
+                                                        ON q6.batch_name = chicken_purchase.batch_name) AS q1) AS q3) AS s1";
                                             $mortalitys = Database::$database->query($sql);
                                             foreach ($mortalitys as $mortality=>$value){
                                             ?>
                                             <div class="text">
-                                                <h2><?php echo $value['mortal']  ?></h2>
+                                                <h2><?php echo $value['GrossProfit']  ?></h2>
                                                 <?php } ?>
-                                                <span>Mortal Chicken</span>
+                                                <span>Gross Profit</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -194,49 +266,6 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="au-card recent-report">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">recent reports</h3>
-                                        <div class="chart-info">
-                                            <div class="chart-info__left">
-                                                <div class="chart-note">
-                                                    <span class="dot dot--blue"></span>
-                                                    <span>products</span>
-                                                </div>
-                                                <div class="chart-note mr-0">
-                                                    <span class="dot dot--green"></span>
-                                                    <span>services</span>
-                                                </div>
-                                            </div>
-                                            <div class="chart-info__right">
-                                                <div class="chart-statis">
-                                                        <span class="index incre">
-                                                            <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                    <span class="label">products</span>
-                                                </div>
-                                                <div class="chart-statis mr-0">
-                                                        <span class="index decre">
-                                                            <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                    <span class="label">services</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="recent-report__chart">
-                                            <?php
-                                            $sql = "SELECT SUM(income) AS 'income',SUM(cost) AS 'expense' FROM (SELECT batch_name,SUM(tamount_money) AS 'income' FROM `chicken_sale` GROUP BY batch_name) AS q1
-                                                INNER JOIN
-                                                (SELECT batch_name,SUM(chicken_price) AS 'cost' FROM `chicken_purchase` GROUP BY batch_name) AS q2
-                                                ON q1.batch_name = q2.batch_name";
-                                            $charts = Database::$database->query($sql);
-                                            foreach ($charts as $chart=>$value){
-                                                ?>
-                                                <canvas id="recent-rep-chart"data-optiona="<?php echo $value['expense'] ?>" data-optionb="<?php echo $value['income'] ?>"></canvas>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-lg-6">
                                 <div class="au-card chart-percent-card">
                                     <div class="au-card-inner">
@@ -250,7 +279,7 @@
                                                     </div>
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--red"></span>
-                                                        <span>Total Alive Chicken</span>
+                                                        <span>Total Chicken</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -269,6 +298,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 m-b-40">Bar chart</h3>
+                                        <?php
+                                        $sql = "SELECT ChickenBuyingCost,ChickenSellingTotal,q1.Month FROM (SELECT SUM(chicken_price) AS 'ChickenBuyingCost', DATE_FORMAT(purchase_date, '%M') AS Month FROM chicken_purchase GROUP BY Month) AS q1 
+                                                            INNER JOIN (SELECT SUM(tamount_money) AS 'ChickenSellingTotal', DATE_FORMAT(sale_date, '%M') AS Month FROM chicken_sale GROUP BY Month) AS q2 
+                                                            ON q1.Month = q2.Month";
+                                        $charts = Database::$database->query($sql);
+                                        foreach ($charts as $chart=>$value){
+                                        ?>
+                                        <canvas id="barChart" data-optionx="<?php echo $value['ChickenBuyingCost'] ?>" data-optiony="<?php echo $value['ChickenSellingTotal'] ?>"data-optionz="<?php echo $value['Month'] ?>"></canvas>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

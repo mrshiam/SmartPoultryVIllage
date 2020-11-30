@@ -14,7 +14,7 @@ function display_errors($errors=array()) {
   if(!empty($errors)) {
     $output .= "<div class=\"errors\">";
     foreach($errors as $error) {
-      $output .= "<p class='alert alert-danger'>" . ($error) . "</p>";
+      $output .= "<p class='alert alert-danger'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\" style=\"margin-right: 5px;\"></i>" . ($error) . "</p>";
     }
     $output .= "</div>";
   }
@@ -26,7 +26,7 @@ function display_session_message() {
   $msg = $session->message();
   if(isset($msg) && $msg != '') {
     $session->clear_message();
-    return '<div id="message">' . ($msg) . '</div>';
+    return '<div class="alert alert-warning" id="message">' . ($msg) . '</div>';
   }
 }
 

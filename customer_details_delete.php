@@ -1,5 +1,6 @@
 <?php include_once 'includes/dashboard/head.php' ?>
 <?php include_once 'includes/dashboard/slider.php' ?>
+<?php require_login(); ?>
 
 
 <?php
@@ -18,8 +19,8 @@ if($cust_detail == false) {
 if(is_post_request()) {
 
     $result = $cust_detail->delete();
-    $_SESSION['message'] = 'The Medicine was deleted successfully.';
-    header("Location: customer_details_repo.php");
+    $session->message('The customer details was deleted successfully.');
+    redirect_to(url_for('customer_details_repo.php'));
 
 } else {
 
