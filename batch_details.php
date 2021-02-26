@@ -55,7 +55,7 @@
 
                     </div>
                     <div class="table-responsive table-responsive-data2">
-                        <table class="table table-data2">
+                        <table class="table table-data2" id="printdata">
                             <thead>
                             <tr>
 
@@ -147,6 +147,9 @@
                         </table>
                     </div>
                     <!-- END DATA TABLE -->
+                    <div class="text-center">
+                        <button onclick="window.print();" class="btn btn-outline-primary"><i class="fas fa-print" style="margin-right: 5px;"></i>Print</button>
+                    </div>
                 </div>
                 <?php
                 $url =('batch_details.php');

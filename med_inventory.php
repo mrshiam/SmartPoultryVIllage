@@ -110,6 +110,9 @@
                         </table>
                     </div>
                     <!-- END DATA TABLE -->
+                    <div class="text-center">
+                        <button onclick="window.print();" class="btn btn-outline-primary"><i class="fas fa-print" style="margin-right: 5px;"></i>Print</button>
+                    </div>
                 </div>
                 <?php
                 $url =('med_inventory.php');

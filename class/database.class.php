@@ -53,8 +53,6 @@ class Database {
 
     static protected function instantiate($record) {
         $object = new static;
-        // Could manually assign values to properties
-        // but automatically assignment is easier and re-usable
         foreach($record as $property => $value) {
             if(property_exists($object, $property)) {
                 $object->$property = $value;
@@ -65,8 +63,6 @@ class Database {
 
     protected function validate() {
         $this->errors = [];
-
-        // Add custom validations
 
         return $this->errors;
     }
@@ -107,7 +103,6 @@ class Database {
     }
 
     public function save() {
-        // A new record will not have an ID yet
         if(isset($this->id)) {
             return $this->update();
         } else {
@@ -150,12 +145,6 @@ class Database {
         $result = self::$database->query($sql);
         return $result;
 
-        // After deleting, the instance of the object will still
-        // exist, even though the database record does not.
-        // This can be useful, as in:
-        //   echo $user->first_name . " was deleted.";
-        // but, for example, we can't call $user->update() after
-        // calling $user->delete().
     }
 
 

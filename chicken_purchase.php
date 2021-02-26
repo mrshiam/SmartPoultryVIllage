@@ -75,7 +75,13 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="c_batch" class="control-label mb-1">Chicken Batch Name</label>
+                                                        <?php
+                                                        $sql = "SELECT batch_name FROM `chicken_purchase` ORDER BY batch_name DESC LIMIT 1";
+                                                        $chickens = Chicken::find_by_sql($sql);
+                                                        foreach ($chickens as $chicken) {
+                                                            ?>
+                                                        <label for="c_batch" class="control-label mb-1">Chicken Batch Name(LBN: <?php echo $chicken->batch_name; ?>)</label><br>
+                                                            <?php } ?>
                                                         <input id="c_batch" name="chicken[batch_name]" type="text" class="form-control"  value="">
                                                     </div>
                                                 </div>
@@ -94,17 +100,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="form-group has-success">
-                                                            <label for="m_amount" class="control-label mb-1">Amount of Money</label>
-                                                            <input id="tmoney" name="chicken[chicken_price]" type="text" class="form-control" value="">
-
+                                                        <div class="form-group">
+                                                            <label for="price_chicken" class="control-label mb-1">Price of Per Chicken</label>
+                                                            <input id="price_chicken" name="chicken[per_price]" type="tel" class="form-control"  value="">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <div class="form-group">
-                                                <label for="price_chicken" class="control-label mb-1">Price of Per Chicken</label>
-                                                <input id="price_chicken" name="chicken[per_price]" type="tel" class="form-control" onclick="Calculate()" value="">
-
+                                            <div class="form-group has-success">
+                                                <label for="m_amount" class="control-label mb-1">Amount of Money</label>
+                                                <input id="tmoney" name="chicken[chicken_price]" type="text" class="form-control" onclick="Calculate()" value="">
                                             </div>
 
                                             <div class="row">
@@ -138,8 +142,8 @@
                                             function Calculate()
                                             {
                                             var totalchick = document.getElementById('tchicken').value;
-                                            var totalMoney = document.getElementById('tmoney').value;
-                                            document.getElementById('price_chicken').value=parseInt(totalMoney) /       parseInt(totalchick);
+                                            var perChicken = document.getElementById('price_chicken').value;
+                                            document.getElementById('tmoney').value=parseInt(totalchick) *       parseInt(perChicken);
 
                                             }
 
